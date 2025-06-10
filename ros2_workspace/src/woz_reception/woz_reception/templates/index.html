@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Dialogue Interface</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h1>Press any key to update the menus</h1>
+        <div class="menu-container">
+            <div class="menu-box">
+                <h2>Menu A</h2>
+                <p id="menuA1">None</p>
+                <p id="menuA2">None</p>
+                <p id="menuA3">None</p>
+            </div>
+            <div class="menu-box">
+                <h2>Menu B</h2>
+                <p id="menuB1">None</p>
+                <p id="menuB2">None</p>
+                <p id="menuB3">None</p>
+            </div>
+            <div class="menu-box">
+                <h2>Menu C</h2>
+                <p id="menuC1">None</p>
+                <p id="menuC2">None</p>
+                <p id="menuC3">None</p>
+            </div>
+        </div>>
+        <script>
+            document.addEventListener('keydown', function (event) {
+                fetch('/update_menus', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ key: event.key }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('menuA1').textContent = data.menuA[0];
+                    document.getElementById('menuA2').textContent = data.menuA[1];
+                    document.getElementById('menuA3').textContent = data.menuA[2];
+
+                    document.getElementById('menuB1').textContent = data.menuB[0];
+                    document.getElementById('menuB2').textContent = data.menuB[1];
+                    document.getElementById('menuB3').textContent = data.menuB[2];
+
+                    document.getElementById('menuC1').textContent = data.menuC[0];
+                    document.getElementById('menuC2').textContent = data.menuC[1];
+                    document.getElementById('menuC3').textContent = data.menuC[2];
+                });
+            });
+        </script>
+    </body>
+</html>
