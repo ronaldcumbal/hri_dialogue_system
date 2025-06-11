@@ -3,33 +3,81 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <title>Dialogue Interface</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+        }
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .menu-box {
+            width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .menu-box h2 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        .menu-box p {
+            font-size: 16px;
+            color: #011327;
+            text-align: left;
+        }
+        button, select {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+    </style>
+    </html>
     <body>
-        <h1>Press any key to update the menus</h1>
+        <h1>Dialogue Interface</h1>
+        <div>
+            <button id="startBtn">Start</button>
+            <button id="endBtn">End</button>
+
+            <label for="settingSelect">Choose condition:</label>
+            <select id="settingSelect">
+                <option value="normal">Normal</option>
+                <option value="rushed">Rushed</option>
+                <option value="very_rushed">Very Rushed</option>
+            </select>
+        </div>
         <div class="menu-container">
             <div class="menu-box">
                 <h2>Menu A</h2>
-                <p id="menuA1">None</p>
-                <p id="menuA2">None</p>
-                <p id="menuA3">None</p>
+                <p id="menuA0">[0] None</p>
+                <p id="menuA1">[1] None</p>
+                <p id="menuA2">[2] None</p>
+                <p id="menuA3">[3] None</p>
+                <p id="menuA4">[4] None</p>
+                <p id="menuA5">[5] None</p>
+                <p id="menuA6">[6] None</p>
+                <p id="menuA7">[7] None</p>
+                <p id="menuA8">[8] None</p>
+                <p id="menuA9">[9] None</p>
             </div>
             <div class="menu-box">
                 <h2>Menu B</h2>
-                <p id="menuB1">None</p>
-                <p id="menuB2">None</p>
-                <p id="menuB3">None</p>
-            </div>
-            <div class="menu-box">
-                <h2>Menu C</h2>
-                <p id="menuC1">None</p>
-                <p id="menuC2">None</p>
-                <p id="menuC3">None</p>
+                <p id="menuB0">[q] None</p>
+                <p id="menuB1">[w] None</p>
+                <p id="menuB2">[e] None</p>
+                <p id="menuB3">[r] None</p>
             </div>
         </div>>
         <script>
             document.addEventListener('keydown', function (event) {
-                fetch('/update_menus', {
+                fetch('/select', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -38,18 +86,46 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('menuA1').textContent = data.menuA[0];
-                    document.getElementById('menuA2').textContent = data.menuA[1];
-                    document.getElementById('menuA3').textContent = data.menuA[2];
-
-                    document.getElementById('menuB1').textContent = data.menuB[0];
-                    document.getElementById('menuB2').textContent = data.menuB[1];
-                    document.getElementById('menuB3').textContent = data.menuB[2];
-
-                    document.getElementById('menuC1').textContent = data.menuC[0];
-                    document.getElementById('menuC2').textContent = data.menuC[1];
-                    document.getElementById('menuC3').textContent = data.menuC[2];
+                    console.log('data:', data.Id);
+                    document.getElementById(data.Id).style.color = '#838996'
+                    
                 });
+            });
+
+            // Start button sends selected setting
+            document.getElementById('startBtn').addEventListener('click', function () {
+                const selectedSetting = document.getElementById('settingSelect').value;
+                fetch('/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ setting: selectedSetting })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('menuA0').textContent = "[0] ".concat(data.menuA[0]);
+                    document.getElementById('menuA1').textContent = "[1] ".concat(data.menuA[1]);
+                    document.getElementById('menuA2').textContent = "[2] ".concat(data.menuA[2]);
+                    document.getElementById('menuA3').textContent = "[3] ".concat(data.menuA[3]);
+                    document.getElementById('menuA4').textContent = "[4] ".concat(data.menuA[4]);
+                    document.getElementById('menuA5').textContent = "[5] ".concat(data.menuA[5]);
+                    document.getElementById('menuA6').textContent = "[6] ".concat(data.menuA[6]);
+                    document.getElementById('menuA7').textContent = "[7] ".concat(data.menuA[7]);
+                    document.getElementById('menuA8').textContent = "[8] ".concat(data.menuA[8]);
+                    document.getElementById('menuA9').textContent = "[9] ".concat(data.menuA[9]);
+
+                    document.getElementById('menuB0').textContent = "[q] ".concat(data.menuB[0]);
+                    document.getElementById('menuB1').textContent = "[w] ".concat(data.menuB[1]);
+                    document.getElementById('menuB2').textContent = "[e] ".concat(data.menuB[2]);
+                    document.getElementById('menuB3').textContent = "[r] ".concat(data.menuB[3]);
+                });
+            });
+
+            // End button
+            document.getElementById('endBtn').addEventListener('click', function () {
+                alert('Dialogue ended.');
+                // Optional: send a request to end a session
             });
         </script>
     </body>
