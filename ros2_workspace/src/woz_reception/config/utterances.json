@@ -1,0 +1,119 @@
+{
+  "main_dialogue": [
+    [
+      "Hello! How can I assist you today?",
+      "Hi there! What information are you looking for?",
+      "Greetings! How may I help you?"
+    ],
+    [
+      "Of course, what kind of information do you need help with?",
+      "Certainly! What would you like to know more about?",
+      "Absolutely. How can I assist you today?"
+    ],
+    [
+      "Sure, can you tell me a bit more about it? What kind of things do you like?",
+      "I'd be happy to help. What sorts of activities or places are you interested in?",
+      "Of course! What are your interests, history, nature, entertainment?"
+    ],
+    [
+      "Great. There is a local history museum just a few blocks from here, it's perfect for learning about the region's past.",
+      "Excellent! You might enjoy the Old Town Heritage Trail and the Historical Society Museum, both rich in local history."
+    ],
+    [
+      "They're open seven days a week, and if you go early, it's usually quieter and easier to enjoy the exhibits and you can find other special events then.",
+      "You can visit any day, weekends are a bit busier, but they also sometimes have special events then."
+    ],
+    [
+      "On weekends, they often host live history performances, with actors portraying life from different eras.",
+      "Sometimes they also have temporary exhibits and storytelling sessions, especially on holidays."
+    ],
+    [
+      "You're in luck! There's a popular venue called The Lantern Theatre that has live music, stand-up, and local plays every night.",
+      "If you enjoy live shows, The Lantern Theatre is a must visit. It features a mix of local talent and traveling acts."
+    ],
+    [
+      "Absolutely! Right next to the theatre is The Hearthstone Café, known for its traditional dishes and live folk music on Fridays.",
+      "You might enjoy The Hearthstone. They offer locally sourced meals and have a rustic, historical decor."
+    ],
+    [
+      "That sounds like a wonderful plan! Would you like me to map that route for you and send it to your phone?",
+      "I can help you create a custom itinerary and send directions to your device, if you like."
+    ],
+    [
+      "All set! I've prepared your itinerary. You should receive a notification on your phone shortly.",
+      "Done! Please check your messages. Your personalized day tour is ready.",
+      "It's sent! Let me know if you'd like to make any changes or add more stops."
+    ],
+    [
+      "You're very welcome! I hope you have a fantastic day discovering our town's history and entertainment.",
+      "It's been my pleasure. Enjoy your time here and feel free to come back if you need anything else.",
+      "You're welcome! I'm always here to help. Just stop by if you need more recommendations."
+    ]
+  ],
+  "normal_bridge": [
+    [
+      "Where were we? Oh right",
+      "Now, where were we? Ah, yes!",
+      "What was I saying? Oh, that's right.",
+      "Picking up where we left off.",
+      "Back to the topic at hand.",
+      "Where was I? Oh yeah"
+    ]
+  ],
+  "normal_condition": [
+    [
+      "<attend_other>Hi, I will be with you shortly.",
+      "<attend_other>Hi, I'll be right with you",
+      "<attend_other>I can help you, just gimme one second"
+    ],
+    [
+      "Excuse me for a second. <attend_other> I will be with you as quickly as possible.",
+      "Sorry, could you excuse me. <attend_other> I'll be with you as soon as I finish helping this visitor.",
+      "Excuse me for a second. <attend_other> I'll be with you shortly. I am just attend_othering another customer"
+    ],
+    [
+      "I'm sorry, I'll take just one second. <attend_other> Sure, how can I help you?",
+      "Sorry, give me one second. <attend_other> What can I do for you?",
+      "Apologies, it will take a second. <attend_other> How may I help you?"
+    ]
+  ],
+  "rushed_condition": [
+    [
+      "<attend_other>I'm just wrapping something up, I'll be with you in a few minutes.",
+      "<attend_other>Thank you for waiting, I'll be right with you.",
+      "<attend_other>I'll be with you as soon as I can, thanks for understanding.",
+      "<attend_other>I'll be right with you shortly.",
+      "<attend_other>I'm finishing something up and will be right with you"
+    ],
+    [
+      "<attend_other>Would it help to take a look through our brochure? It might have just what you need.",
+      "<attend_other>I can see you're in a hurry, I'll do my best to assist you as quickly as possible.",
+      "<attend_other>It won't be long, I understand it's urgent and I appreciate your patience."
+    ],
+    [
+      "<attend_other>Alright, please go ahead.",
+      "<attend_other>Okay, I can help you right now.",
+      "<attend_other>If it's a quick question, I'd be happy to help now.",
+      "<attend_other>Alright, feel free to ask your question.",
+      "Of course! What's your question?",
+      "<attend_other>Absolutely, how can I help you today?"
+    ]
+  ],
+  "very_rushed_condition": [
+    [
+      "<attend_other>I'm just finishing up here, I'll be with you in a few minutes.",
+      "<attend_other>I'll be with you as soon as I can.",
+      "<attend_other>It won't be long, I'll be with you as soon as possible.",
+      "<attend_other>Thank you for your patience, I'll be with you in just a moment.",
+      "<attend_other>Thank you for your patience, I'll be with you in just a moment.",
+      "<attend_other>I'm nearly done and I'll be with you shortly."
+    ],
+    [
+      "If you don't mind, I could help this visitor right away.",
+      "Would it be alright if I help this person? I'll be right with you afterward.",
+      "Would you mind if I help this guest first? Then I'll be glad to help you.",
+      "If that's alright with you, I'll assist this visitor first. Thanks for understanding.",
+      "Would it be okay if I answered their question quickly? I'll be with you just after."
+    ]
+  ]
+}
