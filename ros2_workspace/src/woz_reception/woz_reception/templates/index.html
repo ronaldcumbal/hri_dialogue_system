@@ -6,19 +6,29 @@
     </head>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Courier New", Courier, monospace;
             text-align: center;
             background-color: #f8f9fa;
         }
         .menu-container {
             display: flex;
             justify-content: center;
+            align-items: flex-start;
             gap: 20px;
-            margin-top: 40px;
+            margin-top: 20px;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+        }
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         .menu-box {
-            width: 600px;
-            padding: 20px;
+            width: 700px;
+            padding: 10px;
             border-radius: 10px;
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -29,19 +39,31 @@
             color: #333;
         }
         .menu-box p {
-            font-size: 16px;
+            font-size: 14px;
             color: #011327;
             text-align: left;
+            padding-left: 2.5em;
+            text-indent:-2.5em;
         }
         button, select {
             margin: 5px;
             padding: 10px 15px;
             font-size: 16px;
         }
-    </style>
+        #media-container {
+            display: flex;
+            justify-content: center;
+        }
+        video {
+            width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+</style>
     </html>
     <body>
-        <h1>Dialogue Interface</h1>
+        <h2>Dialogue Interface</h1>
         <div>
             <button id="startBtn">Start</button>
             <button id="stopBtn">Stop</button>
@@ -53,43 +75,70 @@
                 <option value="very_rushed">Very Rushed</option>
             </select>
         </div>
+
         <div class="menu-container">
-            <div class="menu-box">
-                <h2>Menu A</h2>
-                <p id="menuA_0">[q] None</p>
-                <p id="menuA_1">[w] None</p>
-                <p id="menuA_2">[e] None</p>
-                <p id="menuA_3">[r] None</p>
-                <p id="menuA_4">[t] None</p>
-                <p id="menuA_5">[y] None</p>
-                <p id="menuA_6">[u] None</p>
-                <p id="menuA_7">[i] None</p>
-                <p id="menuA_8">[o] None</p>
-                <p id="menuA_9">[p] None</p>
-                <p id="menuA_10">[å] None</p>
-                <br>
-                <p>[SPACE] Next action</p>
+            <div class="left-column">
+                <div class="menu-box">
+                    <h2>Menu A</h2>
+                    <p id="menuA_0">[Q] None</p>
+                    <p id="menuA_1">[W] None</p>
+                    <p id="menuA_2">[E] None</p>
+                    <p id="menuA_3">[R] None</p>
+                    <p id="menuA_4">[T] None</p>
+                    <p id="menuA_5">[Y] None</p>
+                    <p id="menuA_6">[U] None</p>
+                    <p id="menuA_7">[I] None</p>
+                    <p id="menuA_8">[O] None</p>
+                    <p id="menuA_9">[P] None</p>
+                    <p id="menuA_10">[Å] None</p>
+                    <p>[SPACE] Next action</p>
+                </div>
+                <div class="menu-box">
+                    <h2> Fixed Menu: </h2>
+                    <p>[ESC  ]   Repeat action</p>
+                    <p>[LEFT ]  Look Left</p>
+                    <p>[RIGHT] Look Right</p>
+                    <p>[UP   ]  Look CENTER</p>
+                    <p>[DOWN ]  Look USER</p>
+                </div>
             </div>
-            <div class="menu-box">
-                <h2>Menu B</h2>
-                <p id="menuB_0">[0] None</p>
-                <p id="menuB_1">[1] None</p>
-                <p id="menuB_2">[2] None</p>
-                <p id="menuB_3">[3] None</p>
-                <br>
-                <p>[ENTER] Next action</p>
-                <br><br>
-                <h2> Fixed Menu: </h2>
-                <p>[ESC]   Repeat action</p>
-                <br>
-                <p>[LEFT]  Look Left</p>
-                <p>[RIGHT] Look Right</p>
-                <br>
-                <p>[ UP ]  Look CENTER</p>
-                <p>[DOWN]  Look USER</p>
+            <div class="right-column">
+                <div class="menu-box">
+                    <h2>Menu B</h2>
+                    <p id="menuB_0">[0] None</p>
+                    <p id="menuB_1">[1] None</p>
+                    <p id="menuB_2">[2] None</p>
+                    <p id="menuB_3">[3] None</p>
+                    <p>[ENTER] Next action</p>
+                </div>
+                <div id="media-container">
+                    <video id="video" autoplay muted></video>
+                </div>
             </div>
-        </div>>
+        </div>
         <script>
+
+            let currentStream;
+
+            async function startMediaStream() {
+                if (currentStream) {
+                    currentStream.getTracks().forEach(track => track.stop());
+                }
+
+                const constraints = {
+                    video: true,
+                    audio: true
+                };
+
+                try {
+                    currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+                    document.getElementById('video').srcObject = currentStream;
+                } catch (err) {
+                    console.error('Error accessing default camera/microphone:', err);
+                    alert('Could not access default camera or microphone.');
+                }
+            }
+
             document.addEventListener('keydown', function (event) {
                 fetch('/select', {
                     method: 'POST',
@@ -116,28 +165,32 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('menuA_0').textContent = "[q] ".concat(data.menuA_[0]);
-                    document.getElementById('menuA_1').textContent = "[w] ".concat(data.menuA_[1]);
-                    document.getElementById('menuA_2').textContent = "[e] ".concat(data.menuA_[2]);
-                    document.getElementById('menuA_3').textContent = "[r] ".concat(data.menuA_[3]);
-                    document.getElementById('menuA_4').textContent = "[t] ".concat(data.menuA_[4]);
-                    document.getElementById('menuA_5').textContent = "[y] ".concat(data.menuA_[5]);
-                    document.getElementById('menuA_6').textContent = "[u] ".concat(data.menuA_[6]);
-                    document.getElementById('menuA_7').textContent = "[i] ".concat(data.menuA_[7]);
-                    document.getElementById('menuA_8').textContent = "[o] ".concat(data.menuA_[8]);
-                    document.getElementById('menuA_9').textContent = "[p] ".concat(data.menuA_[9]);
+                    document.getElementById('menuA_0').textContent = "[Q] ".concat(data.menuA_[0]);
+                    document.getElementById('menuA_1').textContent = "[W] ".concat(data.menuA_[1]);
+                    document.getElementById('menuA_2').textContent = "[E] ".concat(data.menuA_[2]);
+                    document.getElementById('menuA_3').textContent = "[R] ".concat(data.menuA_[3]);
+                    document.getElementById('menuA_4').textContent = "[T] ".concat(data.menuA_[4]);
+                    document.getElementById('menuA_5').textContent = "[Y] ".concat(data.menuA_[5]);
+                    document.getElementById('menuA_6').textContent = "[U] ".concat(data.menuA_[6]);
+                    document.getElementById('menuA_7').textContent = "[I] ".concat(data.menuA_[7]);
+                    document.getElementById('menuA_8').textContent = "[O] ".concat(data.menuA_[8]);
+                    document.getElementById('menuA_9').textContent = "[P] ".concat(data.menuA_[9]);
+                    document.getElementById('menuA_9').textContent = "[Å] ".concat(data.menuA_[10]);
 
                     document.getElementById('menuB_0').textContent = "[0] ".concat(data.menuB_[0]);
                     document.getElementById('menuB_1').textContent = "[1] ".concat(data.menuB_[1]);
                     document.getElementById('menuB_2').textContent = "[2] ".concat(data.menuB_[2]);
                     document.getElementById('menuB_3').textContent = "[3] ".concat(data.menuB_[3]);
                 });
+                startMediaStream();
             });
 
             // End button
             document.getElementById('stopBtn').addEventListener('click', function () {
                 alert('Dialogue ended.');
-                // Optional: send a request to end a session
+                if (currentStream) {
+                    currentStream.getTracks().forEach(track => track.stop());
+                }
             });
         </script>
     </body>
