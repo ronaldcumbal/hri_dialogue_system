@@ -25,7 +25,7 @@ class WizardInterfaceNode(Node):
 
     def __init__(self):
         super().__init__('wizard_interface')
-        self.pub_robot_action = self.create_publisher(String, 'robot_action', 10)
+        self.pub_robot_action = self.create_publisher(String, '/robot_furhat/robot_action', 10)
         
         self.utterances_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterances.json")
         self.load_utterances()
@@ -131,11 +131,17 @@ def select_utterance():
         robot_action = last_robot_action
         menu_ind = last_menu_ind 
     elif key in ["ArrowUp"]:
-        # ArrowLeft
-        # ArrowDown
-        # ArrowRight
-        robot_action = "<attend_other>"
-        return Response(status=204)
+        robot_action = "/attend_center/"
+        menu_ind = last_menu_ind 
+    elif key in ["ArrowLeft"]:
+        robot_action = "/attend_left/"
+        menu_ind = last_menu_ind 
+    elif key in ["ArrowRight"]:
+        robot_action = "/attend_right/"
+        menu_ind = last_menu_ind 
+    elif key in ["ArrowDown"]:
+        robot_action = "/attend_user/"
+        menu_ind = last_menu_ind 
     else:
         return Response(status=204)
 
