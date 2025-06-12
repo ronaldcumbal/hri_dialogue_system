@@ -7,7 +7,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response
 
 template_dir = os.path.join(os.getcwd(),"src", "woz_reception", "woz_reception", "templates")
 app = Flask(__name__, template_folder=template_dir)
@@ -17,15 +17,19 @@ threading.Thread(target=lambda: app.run(host="localhost", port=8181, debug=False
 
 # --------- ROS2 --------- #
 wizard_interface_node = None
+last_robot_action = None
+last_menu_ind = 0
+chat_enabled = False
 
 class WizardInterfaceNode(Node):
 
     def __init__(self):
         super().__init__('wizard_interface')
-        self.publisher_ = self.create_publisher(String, 'wizard_commands', 10)
+        self.pub_robot_action = self.create_publisher(String, 'robot_action', 10)
+        
         self.utterances_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterances.json")
         self.load_utterances()
-        self.get_logger().info(f'wizard_interface NODE has been started')
+        self.get_logger().debug(f'wizard_interface NODE has been started')
 
     def load_utterances(self):
         # Hack to load utterances from a JSON file. TODO: move code to separte node 
@@ -41,18 +45,18 @@ class WizardInterfaceNode(Node):
     def set_content(self, condition):
         self.condition = condition
         self.content = {}
-        self.content["menuA"] = self.utterances["main"]
-        self.content["menuB"] = self.utterances[condition]
+        self.content["menuA_"] = self.utterances["main"]
+        self.content["menuB_"] = self.utterances[condition]
         return self.content
 
     def get_content(self):
         return self.content
 
-    def publish_command(self, command):
+    def publish_robot_action(self, data):
         msg = String()
-        msg.data = command
-        self.publisher_.publish(msg)
-        # self.get_logger().info('Publishing: "%s"' % msg.data)
+        msg.data = data
+        self.pub_robot_action.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
 
 def main(args=None):
     rclpy.init(args=args)
@@ -72,55 +76,74 @@ def start_dialogue():
     condition = request.json.get('setting')
     global wizard_interface_node
     content = wizard_interface_node.set_content(condition)
+
+    global chat_enabled
+    chat_enabled = True
     return jsonify(content)
 
-@app.route('/end', methods=['POST'])
+@app.route('/stop', methods=['POST'])
 def end_dialogue():
-    pass
+    global chat_enabled
+    chat_enabled = False
 
 @app.route('/select', methods=['POST'])
 def select_utterance():
+
+    global chat_enabled
+    if not chat_enabled:
+        return Response(status=204)
+
+    global last_robot_action
+    global last_menu_ind
 
     global wizard_interface_node
     content = wizard_interface_node.get_content()
 
     key = request.json.get('key')
-    if key in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]:
-        ind = int(key)
-        menu_ind = "menuA"+str(ind)
-        print(f"Selected utterance: {menu_ind}")
-
-        data = content["menuA"][ind]
-        if "<attend_other>" in data:
-           utterance = data.replace("<attend_other>", "")
-           gesture = "attend_other"
-        else:
-           utterance = data
-           gesture = "None"
-        data = {"Id": menu_ind}
-        publish_enabled = True
-
-    elif key in ["q", "w", "e", "r"]:
-        key2int = {"q": 0, "w": 1, "e": 2, "r": 3}
+    # Main Dialogue action
+    if key in ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"]:
+        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "y": 5, "u": 6, "i": 7, "o": 8, "p": 9, "å": 10}
         ind = key2int[key]
-        menu_ind = "menuB"+str(ind)
-        print(f"Selected utterance: {menu_ind}")
-
-        data = content["menuB"][ind]
-        if "<attend_other>" in data:
-           utterance = data.replace("<attend_other>", "")
-           gesture = "attend_other"
+        menu_ind = "menuA_" + str(ind)
+        robot_action = content["menuA_"][ind]
+    # Automatically progress in Main Dialogue
+    elif key in [" "]: # Space key
+        ind = int(last_menu_ind.split("_")[-1])
+        if ind < len(content["menuA_"])-1:
+            ind = int(ind)+1
+            menu_ind = "menuA_" + str(ind)
+            robot_action = content["menuA_"][ind]
         else:
-           utterance = data
-           gesture = "None"
-        data = {"Id": menu_ind}
-        publish_enabled = True
+            return Response(status=204)
+    # Interruption action
+    elif key in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+        ind = int(key)
+        if ind < len(content["menuB_"]):
+            menu_ind = "menuB_" + str(ind)
+            robot_action = content["menuB_"][ind]
+        else:
+            return Response(status=204)
+    # Automatically progress in Interruptions
+    elif key in ["Enter"]:
+        return Response(status=204)
+    # Repeat last action
+    elif key in ["Escape"]:
+        robot_action = last_robot_action
+        menu_ind = last_menu_ind 
+    elif key in ["ArrowUp"]:
+        # ArrowLeft
+        # ArrowDown
+        # ArrowRight
+        robot_action = "<attend_other>"
+        return Response(status=204)
+    else:
+        return Response(status=204)
 
-    if publish_enabled:
-        wizard_interface_node.publish_command(utterance)
-        wizard_interface_node.publish_command(gesture)
+    wizard_interface_node.publish_robot_action(robot_action)
+    last_robot_action = robot_action
+    last_menu_ind = menu_ind
 
-    return jsonify(data)
+    return jsonify({"Id": menu_ind})
 
 if __name__ == '__main__':
     main()

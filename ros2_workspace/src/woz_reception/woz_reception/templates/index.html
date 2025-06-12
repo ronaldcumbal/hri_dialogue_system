@@ -44,7 +44,7 @@
         <h1>Dialogue Interface</h1>
         <div>
             <button id="startBtn">Start</button>
-            <button id="endBtn">End</button>
+            <button id="stopBtn">Stop</button>
 
             <label for="settingSelect">Choose condition:</label>
             <select id="settingSelect">
@@ -56,23 +56,31 @@
         <div class="menu-container">
             <div class="menu-box">
                 <h2>Menu A</h2>
-                <p id="menuA0">[0] None</p>
-                <p id="menuA1">[1] None</p>
-                <p id="menuA2">[2] None</p>
-                <p id="menuA3">[3] None</p>
-                <p id="menuA4">[4] None</p>
-                <p id="menuA5">[5] None</p>
-                <p id="menuA6">[6] None</p>
-                <p id="menuA7">[7] None</p>
-                <p id="menuA8">[8] None</p>
-                <p id="menuA9">[9] None</p>
+                <p id="menuA_0">[q] None</p>
+                <p id="menuA_1">[w] None</p>
+                <p id="menuA_2">[e] None</p>
+                <p id="menuA_3">[r] None</p>
+                <p id="menuA_4">[t] None</p>
+                <p id="menuA_5">[y] None</p>
+                <p id="menuA_6">[u] None</p>
+                <p id="menuA_7">[i] None</p>
+                <p id="menuA_8">[o] None</p>
+                <p id="menuA_9">[p] None</p>
+                <p id="menuA_10">[å] None</p>
+                <br>
+                <p>[SPACE] Next action</p>
             </div>
             <div class="menu-box">
                 <h2>Menu B</h2>
-                <p id="menuB0">[q] None</p>
-                <p id="menuB1">[w] None</p>
-                <p id="menuB2">[e] None</p>
-                <p id="menuB3">[r] None</p>
+                <p id="menuB_0">[0] None</p>
+                <p id="menuB_1">[1] None</p>
+                <p id="menuB_2">[2] None</p>
+                <p id="menuB_3">[3] None</p>
+                <br>
+                <p>[ENTER] Next action</p>
+                <br><br>
+                <h2> Fixed Menu: </h2>
+                <p>[ESC] Repeat action</p>
             </div>
         </div>>
         <script>
@@ -86,9 +94,7 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('data:', data.Id);
                     document.getElementById(data.Id).style.color = '#838996'
-                    
                 });
             });
 
@@ -104,26 +110,26 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('menuA0').textContent = "[0] ".concat(data.menuA[0]);
-                    document.getElementById('menuA1').textContent = "[1] ".concat(data.menuA[1]);
-                    document.getElementById('menuA2').textContent = "[2] ".concat(data.menuA[2]);
-                    document.getElementById('menuA3').textContent = "[3] ".concat(data.menuA[3]);
-                    document.getElementById('menuA4').textContent = "[4] ".concat(data.menuA[4]);
-                    document.getElementById('menuA5').textContent = "[5] ".concat(data.menuA[5]);
-                    document.getElementById('menuA6').textContent = "[6] ".concat(data.menuA[6]);
-                    document.getElementById('menuA7').textContent = "[7] ".concat(data.menuA[7]);
-                    document.getElementById('menuA8').textContent = "[8] ".concat(data.menuA[8]);
-                    document.getElementById('menuA9').textContent = "[9] ".concat(data.menuA[9]);
+                    document.getElementById('menuA_0').textContent = "[q] ".concat(data.menuA_[0]);
+                    document.getElementById('menuA_1').textContent = "[w] ".concat(data.menuA_[1]);
+                    document.getElementById('menuA_2').textContent = "[e] ".concat(data.menuA_[2]);
+                    document.getElementById('menuA_3').textContent = "[r] ".concat(data.menuA_[3]);
+                    document.getElementById('menuA_4').textContent = "[t] ".concat(data.menuA_[4]);
+                    document.getElementById('menuA_5').textContent = "[y] ".concat(data.menuA_[5]);
+                    document.getElementById('menuA_6').textContent = "[u] ".concat(data.menuA_[6]);
+                    document.getElementById('menuA_7').textContent = "[i] ".concat(data.menuA_[7]);
+                    document.getElementById('menuA_8').textContent = "[o] ".concat(data.menuA_[8]);
+                    document.getElementById('menuA_9').textContent = "[p] ".concat(data.menuA_[9]);
 
-                    document.getElementById('menuB0').textContent = "[q] ".concat(data.menuB[0]);
-                    document.getElementById('menuB1').textContent = "[w] ".concat(data.menuB[1]);
-                    document.getElementById('menuB2').textContent = "[e] ".concat(data.menuB[2]);
-                    document.getElementById('menuB3').textContent = "[r] ".concat(data.menuB[3]);
+                    document.getElementById('menuB_0').textContent = "[0] ".concat(data.menuB_[0]);
+                    document.getElementById('menuB_1').textContent = "[1] ".concat(data.menuB_[1]);
+                    document.getElementById('menuB_2').textContent = "[2] ".concat(data.menuB_[2]);
+                    document.getElementById('menuB_3').textContent = "[3] ".concat(data.menuB_[3]);
                 });
             });
 
             // End button
-            document.getElementById('endBtn').addEventListener('click', function () {
+            document.getElementById('stopBtn').addEventListener('click', function () {
                 alert('Dialogue ended.');
                 // Optional: send a request to end a session
             });
