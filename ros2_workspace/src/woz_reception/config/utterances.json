@@ -62,58 +62,56 @@
   ],
   "normal_condition": [
     [
-      "<attend_other>Hi, I will be with you shortly.",
-      "<attend_other>Hi, I'll be right with you",
-      "<attend_other>I can help you, just gimme one second"
+      "/attend_other/ Hi, I will be with you shortly. /attend_user/",
+      "/attend_other/ Hi, I'll be right with you. /attend_user/",
+      "/attend_other/ I can help you, just gimme one second /attend_user/"
     ],
     [
-      "Excuse me for a second. <attend_other> I will be with you as quickly as possible.",
-      "Sorry, could you excuse me. <attend_other> I'll be with you as soon as I finish helping this visitor.",
-      "Excuse me for a second. <attend_other> I'll be with you shortly. I am just attend_othering another customer"
+      "Excuse me for a second. /attend_other/ I will be with you as quickly as possible. /attend_user/",
+      "Sorry, could you excuse me. /attend_other/ I'll be with you as soon as I finish helping this visitor. /attend_user/",
+      "Excuse me for a second. /attend_other/ I'll be with you shortly. I am just attend_othering another customer. /attend_user/"
     ],
     [
-      "I'm sorry, I'll take just one second. <attend_other> Sure, how can I help you?",
-      "Sorry, give me one second. <attend_other> What can I do for you?",
-      "Apologies, it will take a second. <attend_other> How may I help you?"
+      "I'm sorry, I'll take just one second. /attend_other/ Sure, how can I help you?",
+      "Sorry, give me one second. /attend_other/ What can I do for you?",
+      "Apologies, it will take a second. /attend_other/ How may I help you?"
     ]
   ],
   "rushed_condition": [
     [
-      "<attend_other>I'm just wrapping something up, I'll be with you in a few minutes.",
-      "<attend_other>Thank you for waiting, I'll be right with you.",
-      "<attend_other>I'll be with you as soon as I can, thanks for understanding.",
-      "<attend_other>I'll be right with you shortly.",
-      "<attend_other>I'm finishing something up and will be right with you"
+      "/attend_other/ I'm just wrapping something up, I'll be with you in a few minutes. /attend_user/",
+      "/attend_other/ Thank you for waiting, I'll be right with you. /attend_user/",
+      "/attend_other/ I'll be with you as soon as I can, thanks for understanding. /attend_user/",
+      "/attend_other/ I'll be right with you shortly. /attend_user/",
+      "/attend_other/ I'm finishing something up and will be right with you. /attend_user/"
     ],
     [
-      "<attend_other>Would it help to take a look through our brochure? It might have just what you need.",
-      "<attend_other>I can see you're in a hurry, I'll do my best to assist you as quickly as possible.",
-      "<attend_other>It won't be long, I understand it's urgent and I appreciate your patience."
+      "/attend_other/ Would it help to take a look through our brochure? It might have just what you need. /attend_user/",
+      "/attend_other/ I can see you're in a hurry, I'll do my best to assist you as quickly as possible. /attend_user/",
+      "/attend_other/ It won't be long, I understand it's urgent and I appreciate your patience. /attend_user/"
     ],
     [
-      "<attend_other>Alright, please go ahead.",
-      "<attend_other>Okay, I can help you right now.",
-      "<attend_other>If it's a quick question, I'd be happy to help now.",
-      "<attend_other>Alright, feel free to ask your question.",
-      "Of course! What's your question?",
-      "<attend_other>Absolutely, how can I help you today?"
+      "/attend_other/ Alright, please go ahead. ",
+      "/attend_other/ Okay, I can help you right now.",
+      "/attend_other/ If it's a quick question, I'd be happy to help now.",
+      "/attend_other/ Alright, What's your question?",
+      "/attend_other/ Absolutely, how can I help you today?"
     ]
   ],
   "very_rushed_condition": [
     [
-      "<attend_other>I'm just finishing up here, I'll be with you in a few minutes.",
-      "<attend_other>I'll be with you as soon as I can.",
-      "<attend_other>It won't be long, I'll be with you as soon as possible.",
-      "<attend_other>Thank you for your patience, I'll be with you in just a moment.",
-      "<attend_other>Thank you for your patience, I'll be with you in just a moment.",
-      "<attend_other>I'm nearly done and I'll be with you shortly."
+      "/attend_other/ I'm just finishing up here, I'll be with you in a few minutes. /attend_user/",
+      "/attend_other/ I'll be with you as soon as I can. /attend_user/",
+      "/attend_other/ It won't be long, I'll be with you as soon as possible. /attend_user/",
+      "/attend_other/ Thank you for your patience, I'll be with you in just a moment. /attend_user/",
+      "/attend_other/ I'm nearly done and I'll be with you shortly. /attend_user/"
     ],
     [
-      "If you don't mind, I could help this visitor right away.",
-      "Would it be alright if I help this person? I'll be right with you afterward.",
-      "Would you mind if I help this guest first? Then I'll be glad to help you.",
-      "If that's alright with you, I'll assist this visitor first. Thanks for understanding.",
-      "Would it be okay if I answered their question quickly? I'll be with you just after."
+      "If you don't mind, I could help this visitor right away. /attend_other/",
+      "Would it be alright if I help this person? I'll be right with you afterward. /attend_other/",
+      "Would you mind if I help this guest first? Then I'll be glad to help you. /attend_other/",
+      "If that's alright with you, I'll assist this visitor first. Thanks for understanding. /attend_other/",
+      "Would it be okay if I answered their question quickly? I'll be with you just after. /attend_other/"
     ]
   ]
 }
