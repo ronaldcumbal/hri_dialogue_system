@@ -103,11 +103,14 @@ class FurhatBridgeNode(Node):
                         self.furhat.attend(userid="user-1") #For virtual use :"virtual-user-1",
                     except Exception:
                         self.furhat.attend(user="OTHER")
+                else:
+                    self.furhat.attend(location=self.attend_locations["left"])
             elif direction == "user":
                 try:
-                    self.furhat.attend(userid="user-0") #For virtual use :"virtual-user-1",
+                    self.furhat.attend(userid="user-0") #For virtual use :"virtual-user-0",
                 except Exception:
                     self.furhat.attend(user="CLOSEST")
+
             elif direction in ["up", "down", "left", "right", "center"]:
                 self.furhat.attend(location=self.attend_locations[direction])
 

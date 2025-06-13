@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'wizard_interface = woz_reception.wizard_interface:main',
+            'furhat_bridge = woz_reception.furhat_bridge:main',
         ],
     },
 )
