@@ -27,7 +27,7 @@
             gap: 20px;
         }
         .menu-box {
-            width: 700px;
+            width: 600px;
             padding: 10px;
             border-radius: 10px;
             background-color: #ffffff;
@@ -70,9 +70,9 @@
 
             <label for="settingSelect">Choose condition:</label>
             <select id="settingSelect">
-                <option value="normal">Normal</option>
-                <option value="rushed">Rushed</option>
-                <option value="very_rushed">Very Rushed</option>
+                <option value="normal_condition">Normal</option>
+                <option value="rushed_condition">Rushed</option>
+                <option value="very_rushed_condition">Very Rushed</option>
             </select>
         </div>
 
@@ -85,21 +85,16 @@
                     <p id="menuA_2">[E] None</p>
                     <p id="menuA_3">[R] None</p>
                     <p id="menuA_4">[T] None</p>
-                    <p id="menuA_5">[Y] None</p>
-                    <p id="menuA_6">[U] None</p>
-                    <p id="menuA_7">[I] None</p>
-                    <p id="menuA_8">[O] None</p>
-                    <p id="menuA_9">[P] None</p>
-                    <p id="menuA_10">[Å] None</p>
+                    <p id="menuA_5">[A] None</p>
+                    <p id="menuA_6">[S] None</p>
+                    <p id="menuA_7">[D] None</p>
+                    <p id="menuA_8">[F] None</p>
+                    <p id="menuA_9">[G] None</p>
+                    <p id="menuA_10">[Z] None</p>
+                    <p id="menuA_11">[X] None</p>
+                    <p id="menuA_12">[C] None</p>
+                    <p id="menuA_13">[V] None</p>
                     <p>[SPACE] Next action</p>
-                </div>
-                <div class="menu-box">
-                    <h2> Fixed Menu: </h2>
-                    <p>[ESC  ]   Repeat action</p>
-                    <p>[LEFT ]  Look Left</p>
-                    <p>[RIGHT] Look Right</p>
-                    <p>[UP   ]  Look CENTER</p>
-                    <p>[DOWN ]  Look USER</p>
                 </div>
             </div>
             <div class="right-column">
@@ -110,6 +105,12 @@
                     <p id="menuB_2">[2] None</p>
                     <p id="menuB_3">[3] None</p>
                     <p>[ENTER] Next action</p>
+                </div>
+                <div class="menu-box">
+                    <h2> Fixed Menu: </h2>
+                    <p>[ESC__] Repeat action</p>
+                    <p>[LEFT_] Look Left &emsp;&emsp;&emsp; [RIGHT] Look Right</p>
+                    <p>[UP___] Look OTHER &emsp;&emsp;&emsp; [DOWN_] Look USER</p>
                 </div>
                 <div id="media-container">
                     <video id="video" autoplay muted></video>
@@ -170,12 +171,15 @@
                     document.getElementById('menuA_2').textContent = "[E] ".concat(data.menuA_[2]);
                     document.getElementById('menuA_3').textContent = "[R] ".concat(data.menuA_[3]);
                     document.getElementById('menuA_4').textContent = "[T] ".concat(data.menuA_[4]);
-                    document.getElementById('menuA_5').textContent = "[Y] ".concat(data.menuA_[5]);
-                    document.getElementById('menuA_6').textContent = "[U] ".concat(data.menuA_[6]);
-                    document.getElementById('menuA_7').textContent = "[I] ".concat(data.menuA_[7]);
-                    document.getElementById('menuA_8').textContent = "[O] ".concat(data.menuA_[8]);
-                    document.getElementById('menuA_9').textContent = "[P] ".concat(data.menuA_[9]);
-                    document.getElementById('menuA_9').textContent = "[Å] ".concat(data.menuA_[10]);
+                    document.getElementById('menuA_5').textContent = "[A] ".concat(data.menuA_[5]);
+                    document.getElementById('menuA_6').textContent = "[S] ".concat(data.menuA_[6]);
+                    document.getElementById('menuA_7').textContent = "[D] ".concat(data.menuA_[7]);
+                    document.getElementById('menuA_8').textContent = "[F] ".concat(data.menuA_[8]);
+                    document.getElementById('menuA_9').textContent = "[G] ".concat(data.menuA_[9]);
+                    document.getElementById('menuA_10').textContent = "[Z] ".concat(data.menuA_[10]);
+                    document.getElementById('menuA_11').textContent = "[X] ".concat(data.menuA_[11]);
+                    document.getElementById('menuA_12').textContent = "[C] ".concat(data.menuA_[12]);
+                    document.getElementById('menuA_13').textContent = "[V] ".concat(data.menuA_[13]);
 
                     document.getElementById('menuB_0').textContent = "[0] ".concat(data.menuB_[0]);
                     document.getElementById('menuB_1').textContent = "[1] ".concat(data.menuB_[1]);

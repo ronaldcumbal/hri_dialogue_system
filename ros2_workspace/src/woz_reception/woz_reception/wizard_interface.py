@@ -18,7 +18,7 @@ threading.Thread(target=lambda: app.run(host="localhost", port=8181, debug=False
 # --------- ROS2 --------- #
 wizard_interface_node = None
 last_robot_action = None
-last_menu_ind = 0
+last_menu_ind = -1
 chat_enabled = False
 
 class WizardInterfaceNode(Node):
@@ -36,17 +36,16 @@ class WizardInterfaceNode(Node):
         with open(self.utterances_file, 'r') as file:
             self.raw_utterances = json.load(file)
         self.utterances = {}
-        self.utterances["normal_bridge"] = self.raw_utterances["normal_bridge"]
-        self.utterances["main"] = [random.choice(u) for u in self.raw_utterances["main_dialogue"]]
-        self.utterances["normal"] = [random.choice(u) for u in self.raw_utterances["normal_condition"]]
-        self.utterances["rushed"] = [random.choice(u) for u in self.raw_utterances["rushed_condition"]]
-        self.utterances["very_rushed"] = [random.choice(u) for u in self.raw_utterances["very_rushed_condition"]]
+        self.utterances["bridge"] = self.raw_utterances["bridge"]
+        self.utterances["normal_condition"] = self.raw_utterances["normal_condition"]
+        self.utterances["rushed_condition"] = self.raw_utterances["rushed_condition"]
+        self.utterances["very_rushed_condition"] = self.raw_utterances["very_rushed_condition"]
 
     def set_content(self, condition):
         self.condition = condition
         self.content = {}
-        self.content["menuA_"] = self.utterances["main"]
-        self.content["menuB_"] = self.utterances[condition]
+        self.content["menuA_"] = self.utterances[condition]["main_dialogue"]
+        self.content["menuB_"] = self.utterances[condition]["interruptions"]
         return self.content
 
     def get_content(self):
@@ -76,6 +75,7 @@ def start_dialogue():
     condition = request.json.get('setting')
     global wizard_interface_node
     content = wizard_interface_node.set_content(condition)
+    wizard_interface_node.publish_robot_action("/attend_user/")
 
     global chat_enabled
     chat_enabled = True
@@ -108,7 +108,11 @@ def select_utterance():
         robot_action = content["menuA_"][ind]
     # Automatically progress in Main Dialogue
     elif key in [" "]: # Space key
-        ind = int(last_menu_ind.split("_")[-1])
+        if last_menu_ind == -1:
+            ind = -1
+        else:
+            ind = int(last_menu_ind.split("_")[-1])
+
         if ind < len(content["menuA_"])-1:
             ind = int(ind)+1
             menu_ind = "menuA_" + str(ind)
@@ -130,18 +134,19 @@ def select_utterance():
     elif key in ["Escape"]:
         robot_action = last_robot_action
         menu_ind = last_menu_ind 
+        return jsonify({"Id": menu_ind})
     elif key in ["ArrowUp"]:
-        robot_action = "/attend_center/"
-        menu_ind = last_menu_ind 
+        wizard_interface_node.publish_robot_action("/attend_other/")
+        return Response(status=204)
     elif key in ["ArrowLeft"]:
-        robot_action = "/attend_left/"
-        menu_ind = last_menu_ind 
+        wizard_interface_node.publish_robot_action("/attend_left/")
+        return Response(status=204)
     elif key in ["ArrowRight"]:
-        robot_action = "/attend_right/"
-        menu_ind = last_menu_ind 
+        wizard_interface_node.publish_robot_action("/attend_right/")
+        return Response(status=204)
     elif key in ["ArrowDown"]:
-        robot_action = "/attend_user/"
-        menu_ind = last_menu_ind 
+        wizard_interface_node.publish_robot_action("/attend_user/")
+        return Response(status=204)
     else:
         return Response(status=204)
 

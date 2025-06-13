@@ -1,117 +1,67 @@
 {
-  "main_dialogue": [
-    [
+  "bridge": [
+    "Where were we? Oh right",
+    "Now, where were we? Ah, yes!",
+    "What was I saying? Oh, that's right.",
+    "Picking up where we left off.",
+    "Back to the topic at hand.",
+    "Where was I? Oh yeah"
+  ],
+  "normal_condition": {
+    "main_dialogue": [
       "Hello! How can I assist you today?",
-      "Hi there! What information are you looking for?",
-      "Greetings! How may I help you?"
-    ],
-    [
-      "Of course, what kind of information do you need help with?",
       "Certainly! What would you like to know more about?",
-      "Absolutely. How can I assist you today?"
-    ],
-    [
-      "Sure, can you tell me a bit more about it? What kind of things do you like?",
-      "I'd be happy to help. What sorts of activities or places are you interested in?",
-      "Of course! What are your interests, history, nature, entertainment?"
-    ],
-    [
-      "Great. There is a local history museum just a few blocks from here, it's perfect for learning about the region's past.",
-      "Excellent! You might enjoy the Old Town Heritage Trail and the Historical Society Museum, both rich in local history."
-    ],
-    [
-      "They're open seven days a week, and if you go early, it's usually quieter and easier to enjoy the exhibits and you can find other special events then.",
-      "You can visit any day, weekends are a bit busier, but they also sometimes have special events then."
-    ],
-    [
-      "On weekends, they often host live history performances, with actors portraying life from different eras.",
-      "Sometimes they also have temporary exhibits and storytelling sessions, especially on holidays."
-    ],
-    [
-      "You're in luck! There's a popular venue called The Lantern Theatre that has live music, stand-up, and local plays every night.",
-      "If you enjoy live shows, The Lantern Theatre is a must visit. It features a mix of local talent and traveling acts."
-    ],
-    [
-      "Absolutely! Right next to the theatre is The Hearthstone Café, known for its traditional dishes and live folk music on Fridays.",
-      "You might enjoy The Hearthstone. They offer locally sourced meals and have a rustic, historical decor."
-    ],
-    [
-      "That sounds like a wonderful plan! Would you like me to map that route for you and send it to your phone?",
-      "I can help you create a custom itinerary and send directions to your device, if you like."
-    ],
-    [
+      "Excellent! You might enjoy the Old Town Heritage Trail and the Historical Society Museum, both rich in local history.",
+      "You can visit any day, weekends are a bit busier, but they also sometimes have special events then.",
+      "Sometimes they also have temporary exhibits and storytelling sessions, especially on holidays.",
+      "If you enjoy live shows, The Lantern Theatre is a must visit. It features a mix of local talent and traveling acts.",
+      "You might enjoy The Hearthstone. They offer locally sourced meals and have a rustic, historical decor.",
+      "I can help you create a custom itinerary and send directions to your device, if you like.",
       "All set! I've prepared your itinerary. You should receive a notification on your phone shortly.",
-      "Done! Please check your messages. Your personalized day tour is ready.",
-      "It's sent! Let me know if you'd like to make any changes or add more stops."
-    ],
-    [
-      "You're very welcome! I hope you have a fantastic day discovering our town's history and entertainment.",
       "It's been my pleasure. Enjoy your time here and feel free to come back if you need anything else.",
-      "You're welcome! I'm always here to help. Just stop by if you need more recommendations."
-    ]
-  ],
-  "normal_bridge": [
-    [
-      "Where were we? Oh right",
-      "Now, where were we? Ah, yes!",
-      "What was I saying? Oh, that's right.",
-      "Picking up where we left off.",
-      "Back to the topic at hand.",
-      "Where was I? Oh yeah"
-    ]
-  ],
-  "normal_condition": [
-    [
-      "/attend_other/ Hi, I will be with you shortly. /attend_user/",
-      "/attend_other/ Hi, I'll be right with you. /attend_user/",
-      "/attend_other/ I can help you, just gimme one second /attend_user/"
+      "Sure! It's recommended, especially on weekends. I can reserve tickets for you if you'd like.",
+      "Absolutely. One ticket for tomorrow's 7 PM show at The Lantern Theatre has been reserved under your name.",
+      "It runs approximately 90 minutes, with a short intermission halfway through.",
+      "You're very welcome! Have a wonderful evening and enjoy the performance."
     ],
-    [
-      "Excuse me for a second. /attend_other/ I will be with you as quickly as possible. /attend_user/",
+    "interruptions": [
+      "/attend_other/ I can help you, just gimme one second and I will come to you. /attend_user/",
       "Sorry, could you excuse me. /attend_other/ I'll be with you as soon as I finish helping this visitor. /attend_user/",
-      "Excuse me for a second. /attend_other/ I'll be with you shortly. I am just attend_othering another customer. /attend_user/"
-    ],
-    [
-      "I'm sorry, I'll take just one second. /attend_other/ Sure, how can I help you?",
-      "Sorry, give me one second. /attend_other/ What can I do for you?",
-      "Apologies, it will take a second. /attend_other/ How may I help you?"
+      "My apologies, I will take a second to help our other visitor. /attend_other/ How may I help you?"
     ]
-  ],
-  "rushed_condition": [
-    [
+  },
+  "rushed_condition": {
+    "main_dialogue": [
+      "Welcome! I'd be happy to help. Are you looking for outdoor activities, cultural spots, or a bit of everything?",
+      "Perfect. Start with the Riverwalk Trail for some scenic views. I think this is the perfect time of year.",
+      "After that, check out the Glassworks Studio downtown, they offer hands-on art experiences.",
+      "Yes, spots fill up quickly. I could help you to reserve one right now?",
+      "Done! I have signed you up for the 2 PM class. You should receive a confirmation soon.",
+      "Try the Willow Café, great lunch, local ingredients, river view. It has great reviews.",
+      "All within 15 minutes. I'll send a walking map to your phone so you can find them easily.",
+      "You're welcome. Any interest in evening activities while you're here?",
+      "The Civic Square has a free jazz music series tonight at 7 PM, perfect for a relaxing evening.",
+      "Alright. Anything else I can help with before you go?",
+      "Enjoy your day! Let me know if plans change."
+    ],
+    "interruptions": [
       "/attend_other/ I'm just wrapping something up, I'll be with you in a few minutes. /attend_user/",
-      "/attend_other/ Thank you for waiting, I'll be right with you. /attend_user/",
-      "/attend_other/ I'll be with you as soon as I can, thanks for understanding. /attend_user/",
-      "/attend_other/ I'll be right with you shortly. /attend_user/",
-      "/attend_other/ I'm finishing something up and will be right with you. /attend_user/"
-    ],
-    [
-      "/attend_other/ Would it help to take a look through our brochure? It might have just what you need. /attend_user/",
-      "/attend_other/ I can see you're in a hurry, I'll do my best to assist you as quickly as possible. /attend_user/",
-      "/attend_other/ It won't be long, I understand it's urgent and I appreciate your patience. /attend_user/"
-    ],
-    [
-      "/attend_other/ Alright, please go ahead. ",
-      "/attend_other/ Okay, I can help you right now.",
-      "/attend_other/ If it's a quick question, I'd be happy to help now.",
-      "/attend_other/ Alright, What's your question?",
-      "/attend_other/ Absolutely, how can I help you today?"
+      "/attend_other/ If it's a quick question, I'd be happy to help now."
     ]
-  ],
-  "very_rushed_condition": [
-    [
-      "/attend_other/ I'm just finishing up here, I'll be with you in a few minutes. /attend_user/",
-      "/attend_other/ I'll be with you as soon as I can. /attend_user/",
-      "/attend_other/ It won't be long, I'll be with you as soon as possible. /attend_user/",
-      "/attend_other/ Thank you for your patience, I'll be with you in just a moment. /attend_user/",
-      "/attend_other/ I'm nearly done and I'll be with you shortly. /attend_user/"
+  },
+  "very_rushed_condition": {
+    "main_dialogue": [
+      "I'd recommend the Pine Valley Nature Reserve, it's just outside town and has beautiful trails.",
+      "Deer, foxes, and over 100 bird species. There's also a small butterfly garden.",
+      "I can call a shuttle or give you driving directions if you prefer to drive.",
+      "Booked! It leaves in 30 minutes from just outside the visitor center and returns at 5 PM.",
+      "No fee for general entry, just a small charge for guided tours or shuttle services.",
+      "Water, sunscreen, and your phone for photos, there's a lookout point you'll love.",
+      "Want me to send you a full itinerary and checklist to your phone?",
+      "Sent to your device. Have a great time exploring the reserve! Stay safe and enjoy the wildlife."
     ],
-    [
-      "If you don't mind, I could help this visitor right away. /attend_other/",
-      "Would it be alright if I help this person? I'll be right with you afterward. /attend_other/",
-      "Would you mind if I help this guest first? Then I'll be glad to help you. /attend_other/",
-      "If that's alright with you, I'll assist this visitor first. Thanks for understanding. /attend_other/",
-      "Would it be okay if I answered their question quickly? I'll be with you just after. /attend_other/"
+    "interruptions": [
+      "/attend_other/ Sure, you seem to be in a hurry. What can I help you with?"
     ]
-  ]
+  }
 }
