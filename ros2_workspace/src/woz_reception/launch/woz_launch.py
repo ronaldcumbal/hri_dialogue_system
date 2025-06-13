@@ -14,7 +14,7 @@ def generate_launch_description():
     )
     
     furnat_bridge_node = Node(
-            package='robot_furhat',
+            package='woz_reception',
             namespace='robot_furhat',
             executable='furhat_bridge',
             name='furhat_bridge',
