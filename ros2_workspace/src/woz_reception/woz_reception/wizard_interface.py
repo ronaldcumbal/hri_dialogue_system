@@ -136,16 +136,16 @@ def select_utterance():
         menu_ind = last_menu_ind 
         return jsonify({"Id": menu_ind})
     elif key in ["ArrowUp"]:
-        wizard_interface_node.publish_robot_action("/attend_other/")
+        wizard_interface_node.publish_robot_action("*attend_other*")
         return Response(status=204)
     elif key in ["ArrowLeft"]:
-        wizard_interface_node.publish_robot_action("/attend_left/")
+        wizard_interface_node.publish_robot_action("*attend_left*")
         return Response(status=204)
     elif key in ["ArrowRight"]:
-        wizard_interface_node.publish_robot_action("/attend_right/")
+        wizard_interface_node.publish_robot_action("*attend_right*")
         return Response(status=204)
     elif key in ["ArrowDown"]:
-        wizard_interface_node.publish_robot_action("/attend_user/")
+        wizard_interface_node.publish_robot_action("*attend_user*")
         return Response(status=204)
     else:
         return Response(status=204)
