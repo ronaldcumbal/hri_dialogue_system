@@ -1,6 +1,5 @@
 import os
 import json
-import random
 import threading
 from queue import Queue, Full
 
@@ -19,10 +18,9 @@ class FurhatBridgeNode(Node):
         self.create_subscription(String, '/robot_furhat/robot_stop', self.robot_stop_callback, 10)
         self.get_logger().info(f'furhat_bridge NODE has been started')
 
-        self.action_buffer = Queue(maxsize=5)
-        self.action_timer = self.create_timer(1.5, self.action_timer_callback)
+        self.action_buffer = Queue(maxsize=10)
 
-        self.declare_parameter('robot_type', 'physical')
+        self.declare_parameter('robot_type', 'None')
         self.declare_parameter('furhat_ip', '10.0.1.10')
         self.declare_parameter('language_code', 'en-US')
 
@@ -30,23 +28,8 @@ class FurhatBridgeNode(Node):
         self._furhat_ip = self.get_parameter('furhat_ip').value
         self._language = self.get_parameter('language_code').value
 
-        if self._robot_type == "physical":
-            self.robot_present = True
-            self.furhat = FurhatRemoteAPI(host=self._furhat_ip)
-        elif self._robot_type == "virtual":
-            self.robot_present = True
-            self.furhat = FurhatRemoteAPI(host="localhost")
-        else:
-            self.robot_present = False
-
-        # if self._language == "en-US":
-        #     voice = 'Salli (en-US) - Amazon Polly'
-        #     voice = 'ChristopherNeural (en-US) - Microsoft Azure'
-        # elif self._language == "sv-SE":
-        #     voice = 'Astrid (sv-SE) - Amazon Polly'
-
-        # if self.robot_present:
-        #     self.furhat.set_voice(name=voice)
+        # self.set_language()
+        self.set_embodiment()
 
         self.attend_locations = { 'left':  "-0.7, 0.14, 2.0",
                                   'right': " 0.5, 0.14, 2.0",
@@ -55,28 +38,78 @@ class FurhatBridgeNode(Node):
                                   'away':  " 0.1, 0.1,  2.0",
                                   'center':" 0.0, 0.2,  2.0"}
 
+        # Hack to reproduce utterance duration
+        self.utt_duration_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterance_duration.json")
+        with open(self.utt_duration_file, 'r') as file:
+            self.utt_delays = json.load(file)
+        self.motion_delay = 0.1
+
+        self.timer_running = False
+        self.lock = threading.Lock()
+        self.timer = None
+
     def robot_action_callback(self, msg):
         data = msg.data
         if "/" in data: 
-           pased_data = data.split("/")
-        #    self.get_logger().info(f"-----------------------: {pased_data}")
-           for item in pased_data:
+           parsed_data = data.split("/")
+           for item in parsed_data:
                if item.strip() != "":
                    self.action_buffer.put(item.strip())
+        elif "*" in data:
+            parsed_data = data.replace("*","")
+            self.push_action(parsed_data)
         else:
             self.action_buffer.put(data.strip())
-        # self.get_logger().info(f"robot_action_callback")
+ 
+        with self.lock:
+            if not self.timer_running:
+                self.start_action()
 
-    def action_timer_callback(self):
+    def start_action(self):
         if not self.action_buffer.empty():
             action = self.action_buffer.get(block=False)
             if "attend_" in action:
                 self.robot_attend(action)
+                delay = self.motion_delay-1 if (self.motion_delay-1)>0 else self.motion_delay
+                self._start_timer(delay)
             elif "gesture_" in action:
                 self.robot_gesture(action)
+                delay = self.motion_delay-1 if (self.motion_delay-1)>0 else self.motion_delay
+                self._start_timer(delay)
             else:
+                duration = self.utt_delays[action] if action in self.utt_delays.keys() else 3.0
                 self.robot_speak(action)
-        # self.get_logger().info(f"action_timer_callback")
+                self._start_timer(duration)
+
+    def push_action(self, action):
+        if "attend_" in action:
+            self.robot_attend(action)
+        elif "gesture_" in action:
+            self.robot_gesture(action)
+        # else:
+        #     duration = self.utt_delays[action] if action in self.utt_delays.keys() else 3.0
+        #     self.robot_speak(action)
+        #     self._start_timer(duration)
+
+
+    def _start_timer(self, time):
+        self.timer_running = True
+        self.timer = threading.Timer(time, self._on_timer_end)
+        self.timer.start()
+
+    def _on_timer_end(self):
+        with self.lock:
+            self.timer_running = False
+
+        if not self.action_buffer.empty():
+            self.start_action()
+
+    def _stop_timer(self):
+        with self.lock:
+            if self.timer_running and self.timer is not None:
+                self.timer.cancel()
+            self.timer_running = False
+            self.timer = None
 
     def robot_stop_callback(self, msg):
         if self.robot_present:
@@ -117,6 +150,26 @@ class FurhatBridgeNode(Node):
 
         self.get_logger().info(f"furhat_bridge attend: {direction}")
 
+    def set_embodiment(self):
+        if self._robot_type == "physical":
+            self.robot_present = True
+            self.furhat = FurhatRemoteAPI(host=self._furhat_ip)
+        elif self._robot_type == "virtual":
+            self.robot_present = True
+            self.furhat = FurhatRemoteAPI(host="localhost")
+        else:
+            self.robot_present = False
+
+    def set_language(self):
+        if self._language == "en-US":
+            voice = 'Salli (en-US) - Amazon Polly'
+            voice = 'ChristopherNeural (en-US) - Microsoft Azure'
+        elif self._language == "sv-SE":
+            voice = 'Astrid (sv-SE) - Amazon Polly'
+
+        if self.robot_present:
+            self.furhat.set_voice(name=voice)
+        self.get_logger().info(f"furhat_bridge language set to: {self._language_code}")
 
 def main(args=None):
     rclpy.init(args=args)
