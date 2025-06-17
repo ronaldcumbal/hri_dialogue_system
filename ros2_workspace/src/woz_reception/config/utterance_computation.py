@@ -2,7 +2,7 @@ from gtts import gTTS
 from mutagen.mp3 import MP3
 import json
 import time
-
+import numpy as np
 
 def read_utterances():
     utterances_file = 'utterances.json'
@@ -43,6 +43,7 @@ def generate_audio(utt):
 
 def compute_duration(utterances):
     data = {}
+    sec_per_word = []
     for utt in utterances:
         generate_audio(utt)
         # Assuming the audio file is saved as 'audiofile.mp3'
@@ -50,12 +51,13 @@ def compute_duration(utterances):
         time.sleep(1)
         duration = audio.info.length
         data[utt] =  duration
-        print("Utterance: ", utt, " Duration: ", duration)
+        sec_per_word.append(duration/len(utt.split()))
+        print("Utterance: ", utt, " Tokens: ", len(utt.split()), " Duration: ", duration)
 
     with open('utterance_duration.json', 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
-
+    print("Average: ", np.mean(sec_per_word))
 
 if __name__ == "__main__":
     utts = read_utterances()

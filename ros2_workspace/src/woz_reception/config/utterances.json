@@ -24,11 +24,13 @@
       "It runs approximately 90 minutes, with a short intermission halfway through.",
       "You're very welcome! Have a wonderful evening and enjoy the performance."
     ],
-    "interruptions": [
+    "interruption_reply": [
       "/attend_other/ I can help you, just gimme one second and I will come to you. /attend_user/",
       "Sorry, could you excuse me. /attend_other/ I'll be with you as soon as I finish helping this visitor. /attend_user/",
-      "My apologies, I will take a second to help our other visitor. /attend_other/ How may I help you?"
+      "My apologies, I will take a second to help our other visitor. /attend_other/ How may I help you?",
+      "/attend_other/ Usually, buses run every 15 minutes from 8 am to 5 pm. However, because of a marathon happening in the city today, they're running just once every hour. Thanks for your understanding! /attend_user/"
     ]
+
   },
   "rushed_condition": {
     "main_dialogue": [
@@ -44,9 +46,10 @@
       "Alright. Anything else I can help with before you go?",
       "Enjoy your day! Let me know if plans change."
     ],
-    "interruptions": [
+    "interruption_reply": [
       "/attend_other/ I'm just wrapping something up, I'll be with you in a few minutes. /attend_user/",
-      "/attend_other/ If it's a quick question, I'd be happy to help now."
+      "/attend_other/ If it's a quick question, I'd be happy to help now.",
+      "/attend_other/ There's a bus ticket machine just next to the shop in this building. You can also purchase tickets inside the main station. /attend_user/"
     ]
   },
   "very_rushed_condition": {
@@ -60,8 +63,10 @@
       "Want me to send you a full itinerary and checklist to your phone?",
       "Sent to your device. Have a great time exploring the reserve! Stay safe and enjoy the wildlife."
     ],
-    "interruptions": [
-      "/attend_other/ Sure, you seem to be in a hurry. What can I help you with?"
+    "interruption_reply": [
+      "/attend_other/ Sure, you seem to be in a hurry. What can I help you with?",
+      "/attend_other/ We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help. /attend_user/"
+
     ]
   }
 }
