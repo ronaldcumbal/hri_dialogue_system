@@ -16,6 +16,8 @@ class FurhatBridgeNode(Node):
         # self.publisher_ = self.create_publisher(String, 'furhat_bridge', 10)
         self.create_subscription(String, '/robot_furhat/robot_action', self.robot_action_callback, 10)
         self.create_subscription(String, '/robot_furhat/robot_stop', self.robot_stop_callback, 10)
+        self.pub_robot_state = self.create_publisher(String, '/robot_furhat/robot_state', 10)
+
         self.get_logger().info(f'furhat_bridge NODE has been started')
 
         self.action_buffer = Queue(maxsize=10)
@@ -42,7 +44,7 @@ class FurhatBridgeNode(Node):
         self.utt_duration_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterance_duration.json")
         with open(self.utt_duration_file, 'r') as file:
             self.utt_delays = json.load(file)
-        self.motion_delay = 0.1
+        self.motion_delay = 0.25
 
         self.timer_running = False
         self.lock = threading.Lock()
@@ -57,7 +59,7 @@ class FurhatBridgeNode(Node):
                    self.action_buffer.put(item.strip())
         elif "*" in data:
             parsed_data = data.replace("*","")
-            self.push_action(parsed_data)
+            self.force_action(parsed_data)
         else:
             self.action_buffer.put(data.strip())
  
@@ -70,18 +72,23 @@ class FurhatBridgeNode(Node):
             action = self.action_buffer.get(block=False)
             if "attend_" in action:
                 self.robot_attend(action)
-                delay = self.motion_delay-1 if (self.motion_delay-1)>0 else self.motion_delay
+                delay = self.motion_delay
                 self._start_timer(delay)
             elif "gesture_" in action:
                 self.robot_gesture(action)
-                delay = self.motion_delay-1 if (self.motion_delay-1)>0 else self.motion_delay
+                delay = self.motion_delay
                 self._start_timer(delay)
             else:
-                duration = self.utt_delays[action] if action in self.utt_delays.keys() else 3.0
+                if action in self.utt_delays.keys():
+                    duration = self.utt_delays[action]
+                    if duration-1 > 0:
+                        duration = duration-1
+                else:
+                  duration = 0.4965 * int(len(action.split()))
                 self.robot_speak(action)
                 self._start_timer(duration)
 
-    def push_action(self, action):
+    def force_action(self, action):
         if "attend_" in action:
             self.robot_attend(action)
         elif "gesture_" in action:
@@ -150,6 +157,12 @@ class FurhatBridgeNode(Node):
 
         self.get_logger().info(f"furhat_bridge attend: {direction}")
 
+    def publish_robot_state(self, data):
+        msg = String()
+        msg.data = data
+        self.pub_robot_state.publish(msg)
+        self.get_logger().info('Publishing: "%s"' % msg.data)
+
     def set_embodiment(self):
         if self._robot_type == "physical":
             self.robot_present = True
@@ -169,7 +182,7 @@ class FurhatBridgeNode(Node):
 
         if self.robot_present:
             self.furhat.set_voice(name=voice)
-        self.get_logger().info(f"furhat_bridge language set to: {self._language_code}")
+        self.get_logger().info(f"furhat_bridge language set to: {self._language}")
 
 def main(args=None):
     rclpy.init(args=args)

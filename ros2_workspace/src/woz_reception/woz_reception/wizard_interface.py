@@ -45,7 +45,7 @@ class WizardInterfaceNode(Node):
         self.condition = condition
         self.content = {}
         self.content["menuA_"] = self.utterances[condition]["main_dialogue"]
-        self.content["menuB_"] = self.utterances[condition]["interruptions"]
+        self.content["menuB_"] = self.utterances[condition]["interruption_reply"]
         return self.content
 
     def get_content(self):
@@ -101,8 +101,8 @@ def select_utterance():
 
     key = request.json.get('key')
     # Main Dialogue action
-    if key in ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "å"]:
-        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "y": 5, "u": 6, "i": 7, "o": 8, "p": 9, "å": 10}
+    if key in ["q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v"]:
+        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "a": 5, "s": 6, "d": 7, "f": 8, "g": 9, "z": 10, "x": 11, "c": 12, "v": 13} 
         ind = key2int[key]
         menu_ind = "menuA_" + str(ind)
         robot_action = content["menuA_"][ind]
@@ -120,23 +120,26 @@ def select_utterance():
         else:
             return Response(status=204)
     # Interruption action
-    elif key in ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-        ind = int(key)
+    elif key in ["1", "2", "3", "4"]:
+        ind = int(key)-1
         if ind < len(content["menuB_"]):
             menu_ind = "menuB_" + str(ind)
             robot_action = content["menuB_"][ind]
         else:
             return Response(status=204)
-    # Automatically progress in Interruptions
     elif key in ["Enter"]:
+        wizard_interface_node.publish_robot_action("*attend_user*")
+        return Response(status=204)
+    elif key in ["0"]:
+        wizard_interface_node.publish_robot_action("*attend_other*")
         return Response(status=204)
     # Repeat last action
-    elif key in ["Escape"]:
-        robot_action = last_robot_action
-        menu_ind = last_menu_ind 
-        return jsonify({"Id": menu_ind})
+    # elif key in ["Escape"]:
+    #     robot_action = last_robot_action
+    #     menu_ind = last_menu_ind 
+    #     return jsonify({"Id": menu_ind})
     elif key in ["ArrowUp"]:
-        wizard_interface_node.publish_robot_action("*attend_other*")
+        wizard_interface_node.publish_robot_action("*attend_up*")
         return Response(status=204)
     elif key in ["ArrowLeft"]:
         wizard_interface_node.publish_robot_action("*attend_left*")
@@ -145,7 +148,7 @@ def select_utterance():
         wizard_interface_node.publish_robot_action("*attend_right*")
         return Response(status=204)
     elif key in ["ArrowDown"]:
-        wizard_interface_node.publish_robot_action("*attend_user*")
+        wizard_interface_node.publish_robot_action("*attend_center*")
         return Response(status=204)
     else:
         return Response(status=204)

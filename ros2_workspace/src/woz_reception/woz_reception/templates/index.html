@@ -79,7 +79,7 @@
         <div class="menu-container">
             <div class="left-column">
                 <div class="menu-box">
-                    <h2>Menu A</h2>
+                    <h2>Main Dialogue</h2>
                     <p id="menuA_0">[Q] None</p>
                     <p id="menuA_1">[W] None</p>
                     <p id="menuA_2">[E] None</p>
@@ -99,18 +99,18 @@
             </div>
             <div class="right-column">
                 <div class="menu-box">
-                    <h2>Menu B</h2>
-                    <p id="menuB_0">[0] None</p>
-                    <p id="menuB_1">[1] None</p>
-                    <p id="menuB_2">[2] None</p>
-                    <p id="menuB_3">[3] None</p>
-                    <p>[ENTER] Next action</p>
+                    <h2>Interruptions</h2>
+                    <p id="menuB_0">[1] None</p>
+                    <p id="menuB_1">[2] None</p>
+                    <p id="menuB_2">[3] None</p>
+                    <p id="menuB_3">[4] None</p>
                 </div>
                 <div class="menu-box">
-                    <h2> Fixed Menu: </h2>
-                    <p>[ESC__] Repeat action</p>
+                    <h2> Furhat Actions </h2>
+                    <p>[ENTER] Look USER &emsp;&emsp;&emsp; [0] Look OTHER</p>
+                    <!-- <p>[ESC__] Repeat action</p> -->
                     <p>[LEFT_] Look Left &emsp;&emsp;&emsp; [RIGHT] Look Right</p>
-                    <p>[UP___] Look OTHER &emsp;&emsp;&emsp; [DOWN_] Look USER</p>
+                    <p>[UP___] Look Up &emsp;&emsp;&emsp; [DOWN_] Look Center</p>
                 </div>
                 <div id="media-container">
                     <video id="video" autoplay muted></video>
@@ -181,10 +181,10 @@
                     document.getElementById('menuA_12').textContent = "[C] ".concat(data.menuA_[12]);
                     document.getElementById('menuA_13').textContent = "[V] ".concat(data.menuA_[13]);
 
-                    document.getElementById('menuB_0').textContent = "[0] ".concat(data.menuB_[0]);
-                    document.getElementById('menuB_1').textContent = "[1] ".concat(data.menuB_[1]);
-                    document.getElementById('menuB_2').textContent = "[2] ".concat(data.menuB_[2]);
-                    document.getElementById('menuB_3').textContent = "[3] ".concat(data.menuB_[3]);
+                    document.getElementById('menuB_0').textContent = "[1] ".concat(data.menuB_[0]);
+                    document.getElementById('menuB_1').textContent = "[2] ".concat(data.menuB_[1]);
+                    document.getElementById('menuB_2').textContent = "[3] ".concat(data.menuB_[2]);
+                    document.getElementById('menuB_3').textContent = "[4] ".concat(data.menuB_[3]);
                 });
                 startMediaStream();
             });
