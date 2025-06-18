@@ -22,6 +22,8 @@ setup(
         'console_scripts': [
             'wizard_interface = woz_reception.wizard_interface:main',
             'furhat_bridge = woz_reception.furhat_bridge:main',
+            'camera_furhat = woz_reception.camera_furhat:main',
+            'microphone_furhat = woz_reception.microphone_furhat:main',
         ],
     },
 )
