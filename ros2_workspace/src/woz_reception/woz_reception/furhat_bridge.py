@@ -138,19 +138,21 @@ class FurhatBridgeNode(Node):
 
         if self.robot_present:
             if direction== "other":
-                if len(self.furhat.get_users())>1:
-                    # try:
-                    self.furhat.attend(userid="user-1") #For virtual use :"virtual-user-1",
-                    # except Exception:
-                    #     self.furhat.attend(user="OTHER")
-                else:
-                    self.furhat.attend(location=self.attend_locations["left"])
+                self.furhat.attend(location=self.attend_locations["left"])
+                # if len(self.furhat.get_users())>1:
+                #     try:
+                #         self.furhat.attend(userid="user-1") #For virtual use :"virtual-user-1",
+                #     except Exception:
+                #         self.furhat.attend(user="OTHER")
+                # else:
+                    # self.furhat.attend(location=self.attend_locations["left"])
             elif direction == "user":
-                try:
-                    self.furhat.attend(userid="user-0") #For virtual use :"virtual-user-0",
-                except Exception:
-                    # self.furhat.attend(user="CLOSEST")
-                    self.furhat.attend(location=self.attend_locations['center'])
+                self.furhat.attend(location=self.attend_locations['center'])
+                # try:
+                #     self.furhat.attend(user="CLOSEST")
+                #     # self.furhat.attend(userid="user-0") #For virtual use :"virtual-user-0",
+                # except Exception:
+                #     self.furhat.attend(location=self.attend_locations['center'])
 
             elif direction in ["up", "down", "left", "right", "center"]:
                 self.furhat.attend(location=self.attend_locations[direction])
