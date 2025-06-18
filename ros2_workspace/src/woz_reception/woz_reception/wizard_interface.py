@@ -26,6 +26,7 @@ class WizardInterfaceNode(Node):
     def __init__(self):
         super().__init__('wizard_interface')
         self.pub_robot_action = self.create_publisher(String, '/robot_furhat/robot_action', 10)
+        self.pub_state = self.create_publisher(String, '/state', 10)
         
         self.utterances_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterances.json")
         self.load_utterances()
@@ -55,13 +56,20 @@ class WizardInterfaceNode(Node):
         msg = String()
         msg.data = data
         self.pub_robot_action.publish(msg)
-        self.get_logger().info('Publishing: "%s"' % msg.data)
+        # self.get_logger().info('Publishing: "%s"' % msg.data)
+
+    def publish_state(self, data):
+        msg = String()
+        msg.data = data
+        self.pub_state.publish(msg)
+        # self.get_logger().info('Publishing: "%s"' % msg.data)
 
 def main(args=None):
     rclpy.init(args=args)
     global wizard_interface_node 
     wizard_interface_node= WizardInterfaceNode()
     rclpy.spin(wizard_interface_node)
+    wizard_interface_node.publish_state("end")
     rclpy.shutdown()
 
 
@@ -76,6 +84,7 @@ def start_dialogue():
     global wizard_interface_node
     content = wizard_interface_node.set_content(condition)
     wizard_interface_node.publish_robot_action("/attend_user/")
+    wizard_interface_node.publish_state("start")
 
     global chat_enabled
     chat_enabled = True
@@ -120,7 +129,7 @@ def select_utterance():
         else:
             return Response(status=204)
     # Interruption action
-    elif key in ["1", "2", "3", "4"]:
+    elif key in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
         ind = int(key)-1
         if ind < len(content["menuB_"]):
             menu_ind = "menuB_" + str(ind)

@@ -119,26 +119,26 @@
         </div>
         <script>
 
-            let currentStream;
+            // let currentStream;
 
-            async function startMediaStream() {
-                if (currentStream) {
-                    currentStream.getTracks().forEach(track => track.stop());
-                }
+            // async function startMediaStream() {
+            //     if (currentStream) {
+            //         currentStream.getTracks().forEach(track => track.stop());
+            //     }
 
-                const constraints = {
-                    video: true,
-                    audio: true
-                };
+            //     const constraints = {
+            //         video: true,
+            //         audio: true
+            //     };
 
-                try {
-                    currentStream = await navigator.mediaDevices.getUserMedia(constraints);
-                    document.getElementById('video').srcObject = currentStream;
-                } catch (err) {
-                    console.error('Error accessing default camera/microphone:', err);
-                    alert('Could not access default camera or microphone.');
-                }
-            }
+            //     try {
+            //         currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+            //         document.getElementById('video').srcObject = currentStream;
+            //     } catch (err) {
+            //         console.error('Error accessing default camera/microphone:', err);
+            //         alert('Could not access default camera or microphone.');
+            //     }
+            // }
 
             document.addEventListener('keydown', function (event) {
                 fetch('/select', {
