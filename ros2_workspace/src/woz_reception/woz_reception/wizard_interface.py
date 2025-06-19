@@ -84,7 +84,8 @@ def start_dialogue():
     wizard_interface_node.publish_state("start")
 
     global chat_enabled
-    chat_enabled = True
+    if not chat_enabled:
+        chat_enabled = True
     return Response(status=204)
 
 @app.route('/load', methods=['POST'])
@@ -110,8 +111,8 @@ def select_utterance():
 
     key = request.json.get('key')
     # Main Dialogue action
-    if key in ["q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v"]:
-        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "a": 5, "s": 6, "d": 7, "f": 8, "g": 9, "z": 10, "x": 11, "c": 12, "v": 13} 
+    if key in ["q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v", "b", "n", "m"]:
+        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "a": 5, "s": 6, "d": 7, "f": 8, "g": 9, "z": 10, "x": 11, "c": 12, "v": 13, "b":14, "n":15, "m":16} 
         ind = key2int[key]
         menu_ind = "menuA_" + str(ind)
         robot_action = content["menuA_"][ind]

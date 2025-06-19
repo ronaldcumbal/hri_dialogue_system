@@ -94,6 +94,9 @@
                     <p id="menuA_11">[X] None</p>
                     <p id="menuA_12">[C] None</p>
                     <p id="menuA_13">[V] None</p>
+                    <p id="menuA_14">[B] None</p>
+                    <p id="menuA_15">[N] None</p>
+                    <p id="menuA_16">[M] None</p>
                     <p>[SPACE] Next action</p>
                 </div>
             </div>
@@ -141,6 +144,8 @@
             //         alert('Could not access default camera or microphone.');
             //     }
             // }
+            
+            let alertShown = false; // Flag to ensure alert shows only once
 
             document.addEventListener('keydown', function (event) {
                 fetch('/select', {
@@ -168,30 +173,23 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('menuA_0').textContent = "[Q] ".concat(data.menuA_[0]);
-                    document.getElementById('menuA_1').textContent = "[W] ".concat(data.menuA_[1]);
-                    document.getElementById('menuA_2').textContent = "[E] ".concat(data.menuA_[2]);
-                    document.getElementById('menuA_3').textContent = "[R] ".concat(data.menuA_[3]);
-                    document.getElementById('menuA_4').textContent = "[T] ".concat(data.menuA_[4]);
-                    document.getElementById('menuA_5').textContent = "[A] ".concat(data.menuA_[5]);
-                    document.getElementById('menuA_6').textContent = "[S] ".concat(data.menuA_[6]);
-                    document.getElementById('menuA_7').textContent = "[D] ".concat(data.menuA_[7]);
-                    document.getElementById('menuA_8').textContent = "[F] ".concat(data.menuA_[8]);
-                    document.getElementById('menuA_9').textContent = "[G] ".concat(data.menuA_[9]);
-                    document.getElementById('menuA_10').textContent = "[Z] ".concat(data.menuA_[10]);
-                    document.getElementById('menuA_11').textContent = "[X] ".concat(data.menuA_[11]);
-                    document.getElementById('menuA_12').textContent = "[C] ".concat(data.menuA_[12]);
-                    document.getElementById('menuA_13').textContent = "[V] ".concat(data.menuA_[13]);
+                    const menuAKeys = ['Q', 'W', 'E', 'R', 'T', 'A', 'S', 'D', 'F', 'G', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+                    const menuBKeys = ['1', '2', '3', '4', '5', '6'];
 
-                    document.getElementById('menuB_0').textContent = "[1] ".concat(data.menuB_[0]);
-                    document.getElementById('menuB_1').textContent = "[2] ".concat(data.menuB_[1]);
-                    document.getElementById('menuB_2').textContent = "[3] ".concat(data.menuB_[2]);
-                    document.getElementById('menuB_3').textContent = "[4] ".concat(data.menuB_[3]);
-                    document.getElementById('menuB_4').textContent = "[5] ".concat(data.menuB_[4]);
-                    document.getElementById('menuB_5').textContent = "[6] ".concat(data.menuB_[5]);
+                    menuAKeys.forEach((key, i) => {
+                        const el = document.getElementById(`menuA_${i}`);
+                        el.textContent = `[${key}] ${data.menuA_[i]}`;
+                        el.style.color = 'black';
+                    });
+
+                    menuBKeys.forEach((key, i) => {
+                        const el = document.getElementById(`menuB_${i}`);
+                        el.textContent = `[${key}] ${data.menuB_[i]}`;
+                        el.style.color = 'black';
+                    });
                 });
-                alert('Press Start to activate Dialogue and Recording.');
 
+                alert('Press Start to activate Dialogue and Recording ONLY ONCE!!');
                 // startMediaStream();
             });
 
@@ -205,10 +203,19 @@
                     },
                     body: JSON.stringify({ setting: selectedSetting })
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error('Network error');
+                    return response.text(); // if you're returning plain text or nothing
+                })
+                .then(() => {
+                    if (!alertShown) {
+                        alert('Press Start to activate Dialogue and Recording.');
+                        alertShown = true;
+                    }
+                    document.getElementById('startBtn').style.display = 'none';
+                })
+                .catch(error => console.error('Fetch error:', error));
             });
-
-
 
         </script>
     </body>
