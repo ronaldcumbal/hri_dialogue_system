@@ -187,10 +187,13 @@
                         el.textContent = `[${key}] ${data.menuB_[i]}`;
                         el.style.color = 'black';
                     });
-                });
-
-                alert('Press Start to activate Dialogue and Recording ONLY ONCE!!');
-                // startMediaStream();
+                })
+                .then(() => {
+                    if (!alertShown) {
+                        alert('Press Start to activate Dialogue and Recording.');
+                        alertShown = true;
+                    }
+                })
             });
 
 
