@@ -56,20 +56,19 @@ class WizardInterfaceNode(Node):
         msg = String()
         msg.data = data
         self.pub_robot_action.publish(msg)
-        # self.get_logger().info('Publishing: "%s"' % msg.data)
+        # self.get_logger().info('Publishing: %s' % msg.data)
 
     def publish_state(self, data):
         msg = String()
         msg.data = data
         self.pub_state.publish(msg)
-        # self.get_logger().info('Publishing: "%s"' % msg.data)
+        self.get_logger().info('Publishing: %s' % msg.data)
 
 def main(args=None):
     rclpy.init(args=args)
     global wizard_interface_node 
     wizard_interface_node= WizardInterfaceNode()
     rclpy.spin(wizard_interface_node)
-    wizard_interface_node.publish_state("end")
     rclpy.shutdown()
 
 
@@ -94,6 +93,7 @@ def load_dialogue():
     global wizard_interface_node
     content = wizard_interface_node.set_content(condition)
     wizard_interface_node.publish_robot_action("/attend_user/")
+    wizard_interface_node.publish_state("loading "+condition)
     return jsonify(content)
 
 @app.route('/select', methods=['POST'])
@@ -143,11 +143,6 @@ def select_utterance():
     elif key in ["0"]:
         wizard_interface_node.publish_robot_action("*attend_other*")
         return Response(status=204)
-    # Repeat last action
-    # elif key in ["Escape"]:
-    #     robot_action = last_robot_action
-    #     menu_ind = last_menu_ind 
-    #     return jsonify({"Id": menu_ind})
     elif key in ["ArrowUp"]:
         wizard_interface_node.publish_robot_action("*attend_up*")
         return Response(status=204)

@@ -116,12 +116,12 @@ class FurhatBridgeNode(Node):
     def robot_speak(self, text):
         if self.robot_present:
             self.furhat.say(text=text)
-        self.get_logger().info(f"furhat_bridge text: {text}")
+        self.get_logger().info(f"Publishing: speak {text}")
 
     def robot_gesture(self, gesture):
         if self.robot_present:
             self.furhat.gesture(name=gesture)
-        self.get_logger().info(f"furhat_bridge gesture: {gesture}")
+        self.get_logger().info(f"'Publishing: gesture {gesture}")
 
     def robot_attend(self, direction):
         direction = direction.replace("attend_", "")
@@ -147,7 +147,7 @@ class FurhatBridgeNode(Node):
             elif direction in ["up", "down", "left", "right", "center"]:
                 self.furhat.attend(location=self.attend_locations[direction])
 
-        self.get_logger().info(f"furhat_bridge attend: {direction}")
+        self.get_logger().info(f"'Publishing: attend {direction}")
 
     # def robot_speech_stop(self):
     #     if self.robot_present:
@@ -178,7 +178,7 @@ class FurhatBridgeNode(Node):
 
         if self.robot_present:
             self.furhat.set_voice(name=voice)
-        self.get_logger().info(f"furhat_bridge language set to: {self._language}")
+        # self.get_logger().info(f"furhat_bridge language set to: {self._language}")
 
 def main(args=None):
     rclpy.init(args=args)
