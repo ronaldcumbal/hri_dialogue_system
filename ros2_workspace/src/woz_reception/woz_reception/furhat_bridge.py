@@ -15,7 +15,6 @@ class FurhatBridgeNode(Node):
         super().__init__('furhat_bridge')
         # self.publisher_ = self.create_publisher(String, 'furhat_bridge', 10)
         self.create_subscription(String, '/robot_furhat/robot_action', self.robot_action_callback, 10)
-        self.create_subscription(String, '/robot_furhat/robot_stop', self.robot_stop_callback, 10)
         self.pub_robot_state = self.create_publisher(String, '/robot_furhat/robot_state', 10)
 
         self.get_logger().info(f'furhat_bridge NODE has been started')
@@ -117,11 +116,6 @@ class FurhatBridgeNode(Node):
                 self.timer.cancel()
             self.timer_running = False
             self.timer = None
-
-    def robot_stop_callback(self, msg):
-        if self.robot_present:
-            self.furhat.stop()
-        self.get_logger().info(f"furhat_bridge stop")
 
     def robot_speak(self, text):
         if self.robot_present:

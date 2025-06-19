@@ -66,7 +66,7 @@
         <h2>Dialogue Interface</h1>
         <div>
             <button id="startBtn">Start</button>
-            <button id="stopBtn">Stop</button>
+            <!-- <button id="stopBtn">Stop</button> -->
 
             <label for="settingSelect">Choose condition:</label>
             <select id="settingSelect">
@@ -189,13 +189,13 @@
                 startMediaStream();
             });
 
-            // End button
-            document.getElementById('stopBtn').addEventListener('click', function () {
-                alert('Dialogue ended.');
-                if (currentStream) {
-                    currentStream.getTracks().forEach(track => track.stop());
-                }
-            });
+            // // End button
+            // document.getElementById('stopBtn').addEventListener('click', function () {
+            //     alert('Dialogue ended.');
+            //     if (currentStream) {
+            //         currentStream.getTracks().forEach(track => track.stop());
+            //     }
+            // });
         </script>
     </body>
 </html>

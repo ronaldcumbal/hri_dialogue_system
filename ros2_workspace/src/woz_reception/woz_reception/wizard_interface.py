@@ -90,11 +90,6 @@ def start_dialogue():
     chat_enabled = True
     return jsonify(content)
 
-@app.route('/stop', methods=['POST'])
-def end_dialogue():
-    global chat_enabled
-    chat_enabled = False
-
 @app.route('/select', methods=['POST'])
 def select_utterance():
 
