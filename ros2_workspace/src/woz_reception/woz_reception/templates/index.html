@@ -65,8 +65,8 @@
     <body>
         <h2>Dialogue Interface</h1>
         <div>
+            <button id="loadBtn">Load</button>
             <button id="startBtn">Start</button>
-            <!-- <button id="stopBtn">Stop</button> -->
 
             <label for="settingSelect">Choose condition:</label>
             <select id="settingSelect">
@@ -104,6 +104,8 @@
                     <p id="menuB_1">[2] None</p>
                     <p id="menuB_2">[3] None</p>
                     <p id="menuB_3">[4] None</p>
+                    <p id="menuB_4">[5] None</p>
+                    <p id="menuB_5">[6] None</p>
                 </div>
                 <div class="menu-box">
                     <h2> Furhat Actions </h2>
@@ -155,9 +157,9 @@
             });
 
             // Start button sends selected setting
-            document.getElementById('startBtn').addEventListener('click', function () {
+            document.getElementById('loadBtn').addEventListener('click', function () {
                 const selectedSetting = document.getElementById('settingSelect').value;
-                fetch('/start', {
+                fetch('/load', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -185,17 +187,29 @@
                     document.getElementById('menuB_1').textContent = "[2] ".concat(data.menuB_[1]);
                     document.getElementById('menuB_2').textContent = "[3] ".concat(data.menuB_[2]);
                     document.getElementById('menuB_3').textContent = "[4] ".concat(data.menuB_[3]);
+                    document.getElementById('menuB_4').textContent = "[5] ".concat(data.menuB_[4]);
+                    document.getElementById('menuB_5').textContent = "[6] ".concat(data.menuB_[5]);
                 });
-                startMediaStream();
+                alert('Press Start to activate Dialogue and Recording.');
+
+                // startMediaStream();
             });
 
-            // // End button
-            // document.getElementById('stopBtn').addEventListener('click', function () {
-            //     alert('Dialogue ended.');
-            //     if (currentStream) {
-            //         currentStream.getTracks().forEach(track => track.stop());
-            //     }
-            // });
+
+            document.getElementById('startBtn').addEventListener('click', function () {
+                const selectedSetting = document.getElementById('settingSelect').value;
+                fetch('/start', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ setting: selectedSetting })
+                })
+                .then(response => response.json())
+            });
+
+
+
         </script>
     </body>
 </html>

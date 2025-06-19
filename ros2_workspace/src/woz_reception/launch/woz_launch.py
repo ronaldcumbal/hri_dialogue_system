@@ -21,7 +21,7 @@ def generate_launch_description():
             parameters=[
                 {'robot_type': 'physical'},  # virtual or physical or none
                 {'furhat_ip': '10.0.1.10'},  
-                # {'language_code': "en-US"},  # en-US, sv-SE
+                {'language_code': "en-US"},  # en-US, sv-SE
             ]
     )   
 

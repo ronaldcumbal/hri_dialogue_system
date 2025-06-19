@@ -80,14 +80,19 @@ def home():
 
 @app.route('/start', methods=['POST'])
 def start_dialogue():
-    condition = request.json.get('setting')
     global wizard_interface_node
-    content = wizard_interface_node.set_content(condition)
-    wizard_interface_node.publish_robot_action("/attend_user/")
     wizard_interface_node.publish_state("start")
 
     global chat_enabled
     chat_enabled = True
+    return Response(status=204)
+
+@app.route('/load', methods=['POST'])
+def load_dialogue():
+    condition = request.json.get('setting')
+    global wizard_interface_node
+    content = wizard_interface_node.set_content(condition)
+    wizard_interface_node.publish_robot_action("/attend_user/")
     return jsonify(content)
 
 @app.route('/select', methods=['POST'])

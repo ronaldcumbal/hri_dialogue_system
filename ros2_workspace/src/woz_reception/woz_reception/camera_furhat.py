@@ -41,10 +41,8 @@ class FurhatCameraNode(Node):
         self.record_video = True
         self.show_video = False
 
-
         # Timer to call main loop periodically
         # self.timer = self.create_timer(0.01, self.receive_loop)
-
 
     def state_callback(self, msg):
         if msg.data == "start":

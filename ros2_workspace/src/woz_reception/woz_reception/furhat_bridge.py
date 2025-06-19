@@ -29,7 +29,6 @@ class FurhatBridgeNode(Node):
         self._furhat_ip = self.get_parameter('furhat_ip').value
         self._language = self.get_parameter('language_code').value
 
-        # self.set_language()
         self.set_embodiment()
 
         self.attend_locations = { 'left':  "-0.7, 0.14, 2.0",
@@ -92,11 +91,8 @@ class FurhatBridgeNode(Node):
             self.robot_attend(action)
         elif "gesture_" in action:
             self.robot_gesture(action)
-        # else:
-        #     duration = self.utt_delays[action] if action in self.utt_delays.keys() else 3.0
-        #     self.robot_speak(action)
-        #     self._start_timer(duration)
-
+        # elif "stop_speech" in action:
+        #     self.robot_stop_speech(action)
 
     def _start_timer(self, time):
         self.timer_running = True
@@ -153,6 +149,12 @@ class FurhatBridgeNode(Node):
 
         self.get_logger().info(f"furhat_bridge attend: {direction}")
 
+    # def robot_speech_stop(self):
+    #     if self.robot_present:
+    #         self.furhat.say(text=text)
+    #     self._stop_timer()
+
+
     def publish_robot_state(self, data):
         msg = String()
         msg.data = data
@@ -169,10 +171,8 @@ class FurhatBridgeNode(Node):
         else:
             self.robot_present = False
 
-    def set_language(self):
         if self._language == "en-US":
-            voice = 'Salli (en-US) - Amazon Polly'
-            voice = 'ChristopherNeural (en-US) - Microsoft Azure'
+            voice = 'Matthew-Neural (en-US) - Amazon Polly'
         elif self._language == "sv-SE":
             voice = 'Astrid (sv-SE) - Amazon Polly'
 
