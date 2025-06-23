@@ -9,7 +9,8 @@ from std_msgs.msg import String
 
 from flask import Flask, render_template, request, jsonify, Response
 
-template_dir = os.path.join(os.getcwd(),"src", "woz_reception", "woz_reception", "templates")
+ros2_project_path = "home/roncu858/Github/hri_dialogue_system/ros2_workspace"
+template_dir = os.path.join(ros2_project_path,"src", "woz_reception", "woz_reception", "templates")
 app = Flask(__name__, template_folder=template_dir)
 
 # Start the Flask app in a separate thread
@@ -28,7 +29,7 @@ class WizardInterfaceNode(Node):
         self.pub_robot_action = self.create_publisher(String, '/robot_furhat/robot_action', 10)
         self.pub_state = self.create_publisher(String, '/state', 10)
         
-        self.utterances_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterances.json")
+        self.utterances_file = os.path.join(ros2_project_path,"src", "woz_reception", "config", "utterances.json")
         self.load_utterances()
         self.get_logger().debug(f'wizard_interface NODE has been started')
 

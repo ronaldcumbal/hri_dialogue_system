@@ -56,7 +56,8 @@ class MicrophoneFurhatNode(Node):
 
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_audio= f"furhat_audio_{timestamp}.mp3"
-        self.video_path = os.path.join(os.getcwd(),"src", "woz_reception", "data", output_audio)
+        ros2_path = "/home/roncu858/Github/hri_dialogue_system/ros2_workspace"
+        self.video_path = os.path.join(ros2_path, "data", output_audio)
 
         # Setup ZMQ
         self.__context = zmq.Context()

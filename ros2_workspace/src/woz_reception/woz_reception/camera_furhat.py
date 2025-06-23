@@ -22,7 +22,8 @@ class FurhatCameraNode(Node):
 
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         output_video = f"furhat_video_{timestamp}.avi"
-        self.video_path = os.path.join(os.getcwd(),"src", "woz_reception", "data", output_video)
+        ros2_path = "/home/roncu858/Github/hri_dialogue_system/ros2_workspace"
+        self.video_path = os.path.join(ros2_path,"data", output_video)
 
 
         # Setup the sockets
