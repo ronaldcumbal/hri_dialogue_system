@@ -20,10 +20,10 @@ class FurhatCameraNode(Node):
         camera_ip = self.get_parameter('camera_ip').get_parameter_value().string_value
         self.url = f'tcp://{camera_ip}'
 
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        output_video = f"furhat_video_{timestamp}.avi"
-        ros2_path = "/home/roncu858/Github/hri_dialogue_system/ros2_workspace"
-        self.video_path = os.path.join(ros2_path,"data", output_video)
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        output_video = f"{timestamp}_furhat.avi"
+        repository_path = "/home/roncu858/Github/hri_dialogue_system"
+        self.video_path = os.path.join(repository_path,"data", output_video)
 
 
         # Setup the sockets
@@ -46,10 +46,10 @@ class FurhatCameraNode(Node):
         # self.timer = self.create_timer(0.01, self.receive_loop)
 
     def state_callback(self, msg):
-        if msg.data == "start":
+        if msg.data == "START":
             # Timer to call main loop periodically
             self.timer = self.create_timer(0.01, self.receive_loop)
-        elif msg.data == "end":
+        elif msg.data == "END":
             self.cleanup()
 
     def receive_loop(self):
