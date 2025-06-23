@@ -112,8 +112,8 @@ def select_utterance():
 
     key = request.json.get('key')
     # Main Dialogue action
-    if key in ["q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v", "b", "n", "m"]:
-        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "a": 5, "s": 6, "d": 7, "f": 8, "g": 9, "z": 10, "x": 11, "c": 12, "v": 13, "b":14, "n":15, "m":16} 
+    if key in ["q", "w", "e", "r", "t", "a", "s", "d", "f", "g", "z", "x", "c", "v", "b"]:
+        key2int = {"q": 0, "w": 1, "e": 2, "r": 3, "t": 4, "a": 5, "s": 6, "d": 7, "f": 8, "g": 9, "z": 10, "x": 11, "c": 12, "v": 13, "b":14} 
         ind = key2int[key]
         menu_ind = "menuA_" + str(ind)
         robot_action = content["menuA_"][ind]
@@ -131,7 +131,7 @@ def select_utterance():
         else:
             return Response(status=204)
     # Interruption action
-    elif key in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+    elif key in ["1", "2", "3", "4", "5", "6"]:
         ind = int(key)-1
         if ind < len(content["menuB_"]):
             menu_ind = "menuB_" + str(ind)
