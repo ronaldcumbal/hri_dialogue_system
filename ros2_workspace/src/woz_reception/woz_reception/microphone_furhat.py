@@ -11,6 +11,8 @@ import os
 from pydub import AudioSegment
 from datetime import datetime
 
+REPO_PATH = "/home/roncu858/Github/hri_dialogue_system"
+
 # ZMQ Configuration
 ZMQ_ADDRESS = "tcp://10.0.1.10:3001"
 
@@ -54,10 +56,9 @@ class MicrophoneFurhatNode(Node):
 
         self.create_subscription(String, '/state', self.state_callback, 10)
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_audio= f"furhat_audio_{timestamp}.mp3"
-        ros2_path = "/home/roncu858/Github/hri_dialogue_system/ros2_workspace"
-        self.video_path = os.path.join(ros2_path, "data", output_audio)
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        output_audio= f"{timestamp}_audio.mp3"
+        self.video_path = os.path.join(REPO_PATH, "data", output_audio)
 
         # Setup ZMQ
         self.__context = zmq.Context()
@@ -82,12 +83,12 @@ class MicrophoneFurhatNode(Node):
         # self.thread.start()
 
     def state_callback(self, msg):
-        if msg.data == "start":
+        if msg.data == "START":
             # Run listener thread
             self.running = True
             self.thread = threading.Thread(target=self.receive_audio)
             self.thread.start()
-        elif msg.data == "end":
+        elif msg.data == "END":
             self.destroy_node()
 
     def receive_audio(self):

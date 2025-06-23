@@ -31,6 +31,7 @@ class FurhatBridgeNode(Node):
 
         self.set_embodiment()
 
+        self.current_attention = None
         self.attend_locations = { 'left':  "-0.7, 0.14, 2.0",
                                   'right': " 0.5, 0.14, 2.0",
                                   'up':    " 0.0, 0.2,  2.0",
@@ -42,7 +43,7 @@ class FurhatBridgeNode(Node):
         self.utt_duration_file = os.path.join(os.getcwd(),"src", "woz_reception", "config", "utterance_duration.json")
         with open(self.utt_duration_file, 'r') as file:
             self.utt_delays = json.load(file)
-        self.motion_delay = 0.25
+        self.motion_delay = 0.1
 
         self.timer_running = False
         self.lock = threading.Lock()
@@ -127,7 +128,7 @@ class FurhatBridgeNode(Node):
         direction = direction.replace("attend_", "")
 
         if self.robot_present:
-            if direction== "other":
+            if direction== "other" and self.current_attention != "other":
                 self.furhat.attend(location=self.attend_locations["left"])
                 # if len(self.furhat.get_users())>1:
                 #     try:
@@ -136,7 +137,7 @@ class FurhatBridgeNode(Node):
                 #         self.furhat.attend(user="OTHER")
                 # else:
                     # self.furhat.attend(location=self.attend_locations["left"])
-            elif direction == "user":
+            elif direction == "user" and self.current_attention != "user":
                 self.furhat.attend(location=self.attend_locations['center'])
                 # try:
                 #     self.furhat.attend(user="CLOSEST")
@@ -147,6 +148,7 @@ class FurhatBridgeNode(Node):
             elif direction in ["up", "down", "left", "right", "center"]:
                 self.furhat.attend(location=self.attend_locations[direction])
 
+        self.current_attention = direction
         self.get_logger().info(f"'Publishing: attend {direction}")
 
     # def robot_speech_stop(self):

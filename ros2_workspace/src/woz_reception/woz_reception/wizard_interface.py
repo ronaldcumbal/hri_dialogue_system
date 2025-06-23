@@ -81,7 +81,7 @@ def home():
 @app.route('/start', methods=['POST'])
 def start_dialogue():
     global wizard_interface_node
-    wizard_interface_node.publish_state("start")
+    wizard_interface_node.publish_state("START")
 
     global chat_enabled
     if not chat_enabled:
@@ -94,7 +94,7 @@ def load_dialogue():
     global wizard_interface_node
     content = wizard_interface_node.set_content(condition)
     wizard_interface_node.publish_robot_action("/attend_user/")
-    wizard_interface_node.publish_state("loading "+condition)
+    wizard_interface_node.publish_state("LOADING "+condition)
     return jsonify(content)
 
 @app.route('/select', methods=['POST'])
@@ -136,6 +136,7 @@ def select_utterance():
         if ind < len(content["menuB_"]):
             menu_ind = "menuB_" + str(ind)
             robot_action = content["menuB_"][ind]
+            wizard_interface_node.publish_state("INTERRUPTION")
         else:
             return Response(status=204)
     elif key in ["Enter"]:
