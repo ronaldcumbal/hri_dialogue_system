@@ -9,75 +9,65 @@
   ],
   "normal_condition": {
     "main_dialogue": [
-    "Hello there! Need help finding something today?",
-    "Are you visiting from out of town?",
-    "Interested in history, entertainment, or something else?",
-    "Would you like to explore the Heritage Trail and the Historical Society Museum?",
-    "Planning to go today?",
-    "Curious about special events on weekends?",
-    "Would exhibits and storytelling sessions interest you?",
-    "Looking for live entertainment tonight?",
-    "Have you heard of The Lantern Theatre?",
-    "You might need to book tickets. There is an event at 7 PM.",
-    "Curious how long the show runs?",
-    "90 minutes with an intermission. Does that sound good?",
-    "Should I book it now for you?",
-    "Want to eat nearby before the show?",
-    "Would you enjoy local meals in a rustic setting?",
-    "All done. Need help with anything else today?",
-    "Anytime! Have a good day"
+      "Hi! Do you need help finding things to do?",
+      "Looking for outdoor fun, culture, or a mix of both?",
+      "Want to start your morning with something relaxing, like the Riverwalk Trail?",
+      "It follows the river through the old part of town. It's great for photos too.",
+      "Should I send a walking map to get you started?",
+      "Sent! You'll pass a few coffee spots along the way, are you interested in a local café?",
+      "Try Blue Fern Café, it's a small, cozy, locally roasted beans.",
+      "After that, up for something more hands-on?",
+      "There's a downtown art studio offering a 2 PM workshop on painting or pottery.",
+      "Want me to check availability for the painting class?",
+      "Good news! There's a spot open. Should I reserve it?",
+      "Done. You'll have time for lunch before that. Want a suggestion nearby?",
+      "Willow Café is a favorite. It's local food and river views.",
+      "Need help with anything else today?",
+      "Perfect! Have a good day. "
     ],
     "interruption_reply": [
-      "/attend_other/ I can help you, just gimme one second and I will come to you. /attend_user/",
-      "Sorry, could you excuse me. /attend_other/ I'll be with you as soon as I finish helping this visitor. /attend_user/",
-      "My apologies, I will take a second to help our other visitor. /attend_other/ How may I help you?",
-      "/attend_other/ Usually, buses run every 15 minutes from 8 am to 5 pm. However, because of a marathon happening in the city today, they're running just once every hour. /attend_user/",
-      "/attend_other/ I believe my teammate in the back can help you now. Go ahead and check with him! /attend_user/", 
-      "/attend_other/ Apologies, I cannot help you further. My colleague in the back is ready to help you. Feel free to head over now. /attend_user/"
+      "/attend_other/ Hi, I can help you, just give me one second and I will come to you. /attend_user/",
+      "/attend_other/ I'll be with you as soon as I finish helping this visitor. /attend_user/",
+      "/attend_other/ I can assist you now if you have a quick question. How may I help you?",
+      "/attend_other/ Usually, buses run every 15 minutes. However, because of a marathon happening in the city today, they're running once every hour. /attend_user/",
+      "/attend_other/ I believe my colleague in the back can help you now. Go ahead and check with him. /attend_user/", 
+      "/attend_other/ My colleague in the back is ready to help you. Feel free to head over now. /attend_user/"
     ]
 
   },
   "rushed_condition": {
     "main_dialogue": [
-    "Just arrived in town? Need help finding things to do?",
-    "Looking for outdoor fun, culture, or both?",
-    "Want to start with the Riverwalk Trail? It is scenic  and relaxing.",
-    "Interested in trying a hands-on art studio downtown?",
-    "Want me to book you a spot? They fill up fast.",
-    "I can book a spot for the 2 PM class. Does it work for you?",
-    "Want a good place for lunch nearby?",
-    "How about Willow Café, local food, river view?",
-    "You can walk from here, but do you want me to send a map?",
-    "Done! Ready for something in the evening too?",
-    "Free rock series at Civic Square, interested?",
+    "Welcome back! Do you need additional help?",
+    "Want to explore the town’s history next?",
+    "How about walking the Heritage Trail and visiting the Historical Society Museum?",
+    "The trail includes landmarks and markers that tell the town's story.",
+    "The museum has weekend exhibits and storytelling sessions. Curious?",
+    "Yes! They start around 4 PM and run for a couple of hours.",
+    "Absolutely. General admission is open, no booking needed.",
     "Need help with anything else today?",
-    "Great! Enjoy your day and message me if plans change."
+    "Great! Enjoy your day!"
     ],
     "interruption_reply": [
-      "/attend_other/ I'm just wrapping something up, I'll be with you in a few minutes. /attend_user/",
+      "/attend_other/ Hello, I'm just wrapping something up, I'll be with you as soon as possible. /attend_user/",
       "/attend_other/ If it's a quick question, I'd be happy to help now.",
       "/attend_other/ There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station. /attend_user/",
-      "/attend_other/ You can head over to my colleague in the back. He can assist now. /attend_user/",
-      "/attend_other/ I'm really sorry, I cannot help further. My colleague in the back is free to help you. You can go ahead and see them now. /attend_user/"
+      "/attend_other/ I'm really sorry, I cannot help further. Head over to my colleague in the back for more help. /attend_user/",
+      "/attend_other/ You can walk over to my colleague in the back for more information. /attend_user/"
     ]
   },
   "very_rushed_condition": {
     "main_dialogue": [
-    "Hi! Are you looking to spend the day in nature?",
-    "Interested in visiting Pine Valley Nature Reserve?",
-    "Want to see deer, foxes, birds, and a butterfly garden?",
-    "Need a shuttle or driving directions?",
-    "Shall I book you on the one leaving in 30 minutes?",
-    "General entries are free, but I can find about guided tour costs?",
-    "Want tips on what to bring?",
-    "Water, sunscreen, phone for photos. Need help with anything else today?",
+    "Hi, glad to see you again! Need any assistance? ",
+    "The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.",
+    "Shall I book you a table for 8 PM?",
+    "Reservation confirmed. Need help with anything else today?",
     "Great. It was a pleasure to help you. Have a nice day."
     ],
     "interruption_reply": [
       "/attend_other/ Sure, you seem to be in a hurry. What can I help you with?",
       "/attend_other/ We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help. /attend_user/",
-      "/attend_other/ Feel free to walk to the back of the room. My teammate will point out where the box is. /attend_user/",
-      "/attend_other/ Sorry, I can't help you any further. My colleague in the back can show you exactly where the box is. /attend_user/"
+      "/attend_other/ Sorry, I can't help you any further. My colleague in the back can show you exactly where the box is. /attend_user/",
+      "/attend_other/ Feel free to walk to the back of the room. My teammate will point out where the box is. /attend_user/"
     ]
   }
 }
