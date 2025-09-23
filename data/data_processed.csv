@@ -1,0 +1,325 @@
+participant,time_sec,time_str,condition,event,data
+p01,-83.84,-1:36,normal_condition,new_condition,
+p01,0.70,0:01,normal_condition,robot_speech,Hi! Do you need help finding things to do?
+p01,7.53,0:08,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p01,13.95,0:14,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p01,20.11,0:20,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p01,27.65,0:28,normal_condition,robot_speech,Should I send a walking map to get you started?
+p01,34.81,0:35,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p01,42.72,0:43,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p01,50.83,0:51,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p01,58.90,0:59,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p01,66.05,1:06,normal_condition,robot_speech,Want me to check availability for the painting class?
+p01,70.85,1:11,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p01,77.90,1:18,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p01,87.22,1:27,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p01,93.90,1:34,normal_condition,robot_speech,Need help with anything else today?
+p01,98.54,1:39,normal_condition,robot_speech,Perfect! Have a good day.
+p01,116.91,1:57,rushed_condition,new_condition,
+p01,256.79,4:17,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p01,261.91,4:22,rushed_condition,robot_speech,Want to explore the town’s history next?
+p01,266.99,4:27,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p01,275.08,4:35,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p01,281.91,4:42,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p01,289.25,4:49,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p01,296.64,4:57,rushed_condition,robot_speech,"Absolutely. General admission is open, no booking needed."
+p01,303.52,5:04,rushed_condition,robot_speech,Need help with anything else today?
+p01,308.60,5:09,rushed_condition,robot_speech,Great! Enjoy your day!
+p01,330.18,5:30,very_rushed_condition,new_condition,
+p01,415.74,6:56,very_rushed_condition,robot_speech,"Hi, glad to see you again! Need any assistance?"
+p01,433.69,7:14,very_rushed_condition,interruption,
+p01,433.81,7:14,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p01,444.56,7:25,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p02,-233.90,-3:06,normal_condition,new_condition,
+p02,0.00,0:00,normal_condition,robot_speech,Hi! Do you need help finding things to do?
+p02,4.89,0:05,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p02,11.20,0:11,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p02,17.04,0:17,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p02,24.13,0:24,normal_condition,robot_speech,Should I send a walking map to get you started?
+p02,29.14,0:29,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p02,37.04,0:37,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p02,44.36,0:44,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p02,51.17,0:51,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p02,58.49,0:58,normal_condition,robot_speech,Want me to check availability for the painting class?
+p02,63.59,1:04,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p02,69.25,1:09,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p02,76.07,1:16,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p02,82.41,1:22,normal_condition,robot_speech,Need help with anything else today?
+p02,86.87,1:27,normal_condition,robot_speech,Perfect! Have a good day.
+p02,118.53,1:59,rushed_condition,new_condition,
+p02,211.14,3:31,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p02,219.65,3:40,rushed_condition,robot_speech,Want to explore the town’s history next?
+p02,225.61,3:46,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p02,232.21,3:52,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p02,237.81,3:58,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p02,246.24,4:06,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p02,254.94,4:15,rushed_condition,robot_speech,"Absolutely. General admission is open, no booking needed."
+p02,261.78,4:22,rushed_condition,robot_speech,Need help with anything else today?
+p02,266.78,4:27,rushed_condition,robot_speech,Great! Enjoy your day!
+p02,304.92,5:05,very_rushed_condition,new_condition,
+p02,360.02,6:00,very_rushed_condition,robot_speech,"Hi, glad to see you again! Need any assistance?"
+p02,365.87,6:06,very_rushed_condition,robot_speech,The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.
+p02,373.71,6:14,very_rushed_condition,robot_speech,Shall I book you a table for 8 PM?
+p02,381.44,6:21,very_rushed_condition,robot_speech,Reservation confirmed. Need help with anything else today?
+p02,388.79,6:29,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p03,-176.70,-2:03,normal_condition,new_condition,
+p03,0.50,0:00,normal_condition,robot_speech,Hi! Do you need help finding things to do?
+p03,5.91,0:06,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p03,11.70,0:12,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p03,19.34,0:19,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p03,27.30,0:27,normal_condition,robot_speech,Should I send a walking map to get you started?
+p03,32.11,0:32,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p03,41.30,0:41,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p03,48.71,0:49,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p03,56.23,0:56,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p03,64.69,1:05,normal_condition,robot_speech,Want me to check availability for the painting class?
+p03,69.90,1:10,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p03,76.01,1:16,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p03,84.54,1:25,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p03,90.45,1:30,normal_condition,robot_speech,Need help with anything else today?
+p03,95.57,1:36,normal_condition,robot_speech,Perfect! Have a good day.
+p03,116.62,1:57,rushed_condition,new_condition,
+p03,236.70,3:57,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p03,249.27,4:09,rushed_condition,interruption,
+p03,249.39,4:09,rushed_condition,robot_speech,"If it's a quick question, I'd be happy to help now."
+p03,258.45,4:18,rushed_condition,interruption,
+p03,258.56,4:19,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p03,268.10,4:28,rushed_condition,robot_speech,Great! Enjoy your day!
+p03,280.67,4:41,very_rushed_condition,new_condition,
+p03,366.23,6:06,very_rushed_condition,robot_speech,"Hi, glad to see you again! Need any assistance?"
+p03,369.99,6:10,very_rushed_condition,interruption,
+p03,370.10,6:10,very_rushed_condition,robot_speech,"Sure, you seem to be in a hurry. What can I help you with?"
+p03,378.61,6:19,very_rushed_condition,interruption,
+p03,378.72,6:19,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p03,388.40,6:28,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p04,-178.20,-2:02,normal_condition,new_condition,
+p04,0.20,0:00,normal_condition,robot_speech,Hi! Do you need help finding things to do?
+p04,4.77,0:05,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p04,10.71,0:11,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p04,16.38,0:16,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p04,23.35,0:23,normal_condition,robot_speech,Should I send a walking map to get you started?
+p04,28.98,0:29,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p04,38.62,0:39,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p04,45.29,0:45,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p04,53.27,0:53,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p04,62.17,1:02,normal_condition,robot_speech,Want me to check availability for the painting class?
+p04,68.20,1:08,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p04,74.29,1:14,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p04,83.14,1:23,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p04,89.06,1:29,normal_condition,robot_speech,Need help with anything else today?
+p04,94.52,1:35,normal_condition,robot_speech,Perfect! Have a good day.
+p04,114.57,1:55,rushed_condition,new_condition,
+p04,184.38,3:04,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p04,189.36,3:09,rushed_condition,robot_speech,Want to explore the town’s history next?
+p04,203.10,3:23,rushed_condition,interruption,
+p04,203.22,3:23,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p04,211.86,3:32,rushed_condition,robot_speech,Great! Enjoy your day!
+p04,225.78,3:46,very_rushed_condition,new_condition,
+p04,317.26,5:17,very_rushed_condition,robot_speech,"Hi, glad to see you again! Need any assistance?"
+p04,327.11,5:27,very_rushed_condition,interruption,
+p04,327.23,5:27,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p04,336.24,5:36,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p05,-128.77,-2:51,normal_condition,new_condition,
+p05,5.00,0:05,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p05,11.25,0:11,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p05,18.59,0:19,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p05,27.48,0:27,normal_condition,robot_speech,Should I send a walking map to get you started?
+p05,33.48,0:33,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p05,41.06,0:41,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p05,47.77,0:48,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p05,54.88,0:55,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p05,64.90,1:05,normal_condition,robot_speech,Want me to check availability for the painting class?
+p05,69.77,1:10,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p05,75.63,1:16,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p05,83.59,1:24,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p05,89.65,1:30,normal_condition,robot_speech,Need help with anything else today?
+p05,95.12,1:35,normal_condition,robot_speech,Perfect! Have a good day.
+p05,117.63,1:58,rushed_condition,new_condition,
+p05,168.56,2:49,rushed_condition,robot_speech,Want to explore the town’s history next?
+p05,173.21,2:53,rushed_condition,interruption,
+p05,173.32,2:53,rushed_condition,robot_speech,"Hello, I'm just wrapping something up, I'll be with you as soon as possible."
+p05,186.36,3:06,rushed_condition,interruption,
+p05,186.47,3:06,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p05,194.42,3:14,rushed_condition,robot_speech,Great! Enjoy your day!
+p05,207.96,3:28,very_rushed_condition,new_condition,
+p05,309.04,5:09,very_rushed_condition,robot_speech,The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.
+p05,313.45,5:13,very_rushed_condition,interruption,
+p05,314.39,5:14,very_rushed_condition,robot_speech,"Sure, you seem to be in a hurry. What can I help you with?"
+p05,324.61,5:25,very_rushed_condition,interruption,
+p05,324.72,5:25,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p05,334.29,5:34,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p06,-165.16,-2:15,normal_condition,new_condition,
+p06,0.25,0:00,normal_condition,robot_speech,Hi! Do you need help finding things to do?
+p06,5.82,0:06,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p06,11.81,0:12,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p06,18.20,0:18,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p06,25.72,0:26,normal_condition,robot_speech,Should I send a walking map to get you started?
+p06,30.61,0:31,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p06,40.83,0:41,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p06,47.37,0:47,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p06,53.85,0:54,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p06,62.00,1:02,normal_condition,robot_speech,Want me to check availability for the painting class?
+p06,66.96,1:07,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p06,75.49,1:15,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p06,83.78,1:24,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p06,92.65,1:33,normal_condition,interruption,
+p06,92.77,1:33,normal_condition,robot_speech,"Usually, buses run every 15 minutes. However, because of a marathon happening in the city today, they're running once every hour."
+p06,105.00,1:45,normal_condition,interruption,
+p06,105.11,1:45,normal_condition,robot_speech,I believe my colleague in the back can help you now. Go ahead and check with him.
+p06,113.01,1:53,normal_condition,robot_speech,Perfect! Have a good day.
+p06,127.28,2:07,rushed_condition,new_condition,
+p06,171.45,2:51,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p06,177.93,2:58,rushed_condition,robot_speech,Want to explore the town’s history next?
+p06,183.45,3:03,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p06,189.95,3:10,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p06,196.71,3:17,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p06,204.73,3:25,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p06,212.61,3:33,rushed_condition,interruption,
+p06,212.72,3:33,rushed_condition,robot_speech,"Hello, I'm just wrapping something up, I'll be with you as soon as possible."
+p06,222.26,3:42,rushed_condition,robot_speech,"Absolutely. General admission is open, no booking needed."
+p06,229.30,3:49,rushed_condition,robot_speech,Need help with anything else today?
+p06,233.54,3:54,rushed_condition,robot_speech,Great! Enjoy your day!
+p06,241.93,4:02,rushed_condition,interruption,
+p06,242.05,4:02,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p06,250.44,4:10,rushed_condition,robot_speech,Great! Enjoy your day!
+p06,260.45,4:20,very_rushed_condition,new_condition,
+p06,310.84,5:11,very_rushed_condition,robot_speech,"Hi, glad to see you again! Need any assistance?"
+p06,325.69,5:26,very_rushed_condition,interruption,
+p06,325.81,5:26,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p06,335.19,5:35,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p06,338.68,5:39,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p08,-170.32,-2:10,normal_condition,new_condition,
+p08,4.25,0:04,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p08,10.18,0:10,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p08,16.55,0:17,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p08,23.34,0:23,normal_condition,robot_speech,Should I send a walking map to get you started?
+p08,29.70,0:30,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p08,37.64,0:38,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p08,43.63,0:44,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p08,50.31,0:50,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p08,57.18,0:57,normal_condition,robot_speech,Want me to check availability for the painting class?
+p08,63.55,1:04,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p08,69.11,1:09,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p08,75.97,1:16,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p08,82.32,1:22,normal_condition,robot_speech,Need help with anything else today?
+p08,87.29,1:27,normal_condition,robot_speech,Perfect! Have a good day.
+p08,108.38,1:48,rushed_condition,new_condition,
+p08,164.61,2:45,rushed_condition,robot_speech,Welcome back! Do you need additional help?
+p08,171.40,2:51,rushed_condition,robot_speech,Want to explore the town’s history next?
+p08,177.27,2:57,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p08,183.40,3:03,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p08,187.28,3:07,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p08,194.14,3:14,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p08,201.72,3:22,rushed_condition,robot_speech,"Absolutely. General admission is open, no booking needed."
+p08,208.02,3:28,rushed_condition,robot_speech,Need help with anything else today?
+p08,212.75,3:33,rushed_condition,robot_speech,Great! Enjoy your day!
+p08,238.73,3:59,very_rushed_condition,new_condition,
+p08,272.68,4:33,very_rushed_condition,robot_speech,The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.
+p08,279.75,4:40,very_rushed_condition,robot_speech,Shall I book you a table for 8 PM?
+p08,287.34,4:47,very_rushed_condition,robot_speech,Reservation confirmed. Need help with anything else today?
+p08,296.33,4:56,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p08,313.81,5:14,very_rushed_condition,interruption,
+p08,313.92,5:14,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p08,328.57,5:29,very_rushed_condition,interruption,
+p08,328.68,5:29,very_rushed_condition,robot_speech,"Sorry, I can't help you any further. My colleague in the back can show you exactly where the box is."
+p08,337.94,5:38,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p09,-145.40,-2:35,normal_condition,new_condition,
+p09,5.70,0:06,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p09,12.50,0:13,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p09,18.69,0:19,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p09,24.75,0:25,normal_condition,robot_speech,Should I send a walking map to get you started?
+p09,29.52,0:30,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p09,37.32,0:37,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p09,44.03,0:44,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p09,51.07,0:51,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p09,58.47,0:58,normal_condition,robot_speech,Want me to check availability for the painting class?
+p09,63.38,1:03,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p09,68.74,1:09,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p09,77.55,1:18,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p09,84.95,1:25,normal_condition,robot_speech,Need help with anything else today?
+p09,89.97,1:30,normal_condition,robot_speech,Perfect! Have a good day.
+p09,115.92,1:56,rushed_condition,new_condition,
+p09,143.66,2:24,rushed_condition,robot_speech,Want to explore the town’s history next?
+p09,149.16,2:29,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p09,155.30,2:35,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p09,159.18,2:39,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p09,166.46,2:46,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p09,169.34,2:49,rushed_condition,interruption,
+p09,170.67,2:51,rushed_condition,robot_speech,"If it's a quick question, I'd be happy to help now."
+p09,178.41,2:58,rushed_condition,interruption,
+p09,178.52,2:59,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p09,187.87,3:08,rushed_condition,interruption,
+p09,187.99,3:08,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p09,188.73,3:09,rushed_condition,interruption,
+p09,194.85,3:15,rushed_condition,robot_speech,"I'm really sorry, I cannot help further. Head over to my colleague in the back for more help."
+p09,202.22,3:22,rushed_condition,robot_speech,Great! Enjoy your day!
+p09,221.01,3:41,very_rushed_condition,new_condition,
+p09,284.44,4:44,very_rushed_condition,new_condition,
+p10,-175.27,-2:05,normal_condition,new_condition,
+p10,4.50,0:04,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p10,10.43,0:10,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p10,16.62,0:17,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p10,23.29,0:23,normal_condition,robot_speech,Should I send a walking map to get you started?
+p10,27.98,0:28,normal_condition,robot_speech,"Sent! You'll pass a few coffee spots along the way, are you interested in a local café?"
+p10,36.25,0:36,normal_condition,robot_speech,"Try Blue Fern Café, it's a small, cozy, locally roasted beans."
+p10,42.79,0:43,normal_condition,robot_speech,"After that, up for something more hands-on?"
+p10,50.69,0:51,normal_condition,robot_speech,There's a downtown art studio offering a 2 PM workshop on painting or pottery.
+p10,57.97,0:58,normal_condition,robot_speech,Want me to check availability for the painting class?
+p10,62.91,1:03,normal_condition,robot_speech,Good news! There's a spot open. Should I reserve it?
+p10,68.17,1:08,normal_condition,robot_speech,Done. You'll have time for lunch before that. Want a suggestion nearby?
+p10,76.65,1:17,normal_condition,robot_speech,Willow Café is a favorite. It's local food and river views.
+p10,84.86,1:25,normal_condition,robot_speech,Need help with anything else today?
+p10,90.22,1:30,normal_condition,robot_speech,Perfect! Have a good day.
+p10,129.26,2:09,rushed_condition,new_condition,
+p10,150.08,2:30,rushed_condition,robot_speech,Want to explore the town’s history next?
+p10,154.03,2:34,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p10,160.90,2:41,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p10,166.16,2:46,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p10,173.27,2:53,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p10,181.88,3:02,rushed_condition,robot_speech,"Absolutely. General admission is open, no booking needed."
+p10,187.01,3:07,rushed_condition,interruption,
+p10,187.13,3:07,rushed_condition,robot_speech,"If it's a quick question, I'd be happy to help now."
+p10,196.48,3:16,rushed_condition,interruption,
+p10,196.59,3:17,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p10,206.81,3:27,rushed_condition,robot_speech,Great! Enjoy your day!
+p10,216.81,3:37,very_rushed_condition,new_condition,
+p10,414.83,6:55,very_rushed_condition,robot_speech,The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.
+p10,421.86,7:02,very_rushed_condition,robot_speech,Shall I book you a table for 8 PM?
+p10,429.05,7:09,very_rushed_condition,robot_speech,Reservation confirmed. Need help with anything else today?
+p10,432.24,7:12,very_rushed_condition,interruption,
+p10,432.73,7:13,very_rushed_condition,robot_speech,"Sure, you seem to be in a hurry. What can I help you with?"
+p10,439.96,7:20,very_rushed_condition,interruption,
+p10,440.07,7:20,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p10,449.31,7:29,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
+p11,-362.21,-6:58,normal_condition,new_condition,
+p11,6.00,0:06,normal_condition,robot_speech,"Looking for outdoor fun, culture, or a mix of both?"
+p11,12.45,0:12,normal_condition,robot_speech,"Want to start your morning with something relaxing, like the Riverwalk Trail?"
+p11,18.48,0:18,normal_condition,robot_speech,It follows the river through the old part of town. It's great for photos too.
+p11,24.62,0:25,normal_condition,robot_speech,Should I send a walking map to get you started?
+p11,27.41,0:27,normal_condition,interruption,
+p11,27.53,0:28,normal_condition,robot_speech,"Hi, I can help you, just give me one second and I will come to you."
+p11,37.74,0:38,normal_condition,interruption,
+p11,37.87,0:38,normal_condition,robot_speech,I can assist you now if you have a quick question. How may I help you?
+p11,49.43,0:49,normal_condition,interruption,
+p11,49.54,0:50,normal_condition,robot_speech,"Usually, buses run every 15 minutes. However, because of a marathon happening in the city today, they're running once every hour."
+p11,63.66,1:04,normal_condition,interruption,
+p11,63.79,1:04,normal_condition,robot_speech,I believe my colleague in the back can help you now. Go ahead and check with him.
+p11,69.19,1:09,normal_condition,robot_speech,Perfect! Have a good day.
+p11,98.63,1:39,rushed_condition,new_condition,
+p11,178.39,2:58,rushed_condition,robot_speech,Want to explore the town’s history next?
+p11,182.66,3:03,rushed_condition,robot_speech,How about walking the Heritage Trail and visiting the Historical Society Museum?
+p11,189.36,3:09,rushed_condition,robot_speech,The trail includes landmarks and markers that tell the town's story.
+p11,193.24,3:13,rushed_condition,robot_speech,The museum has weekend exhibits and storytelling sessions. Curious?
+p11,199.03,3:19,rushed_condition,robot_speech,Yes! They start around 4 PM and run for a couple of hours.
+p11,207.10,3:27,rushed_condition,interruption,
+p11,207.22,3:27,rushed_condition,robot_speech,"If it's a quick question, I'd be happy to help now."
+p11,214.26,3:34,rushed_condition,interruption,
+p11,214.37,3:34,rushed_condition,robot_speech,There's a bus ticket machine in the back of this room. You can also purchase tickets inside the main station.
+p11,222.33,3:42,rushed_condition,robot_speech,Great! Enjoy your day!
+p11,236.58,3:57,very_rushed_condition,new_condition,
+p11,302.63,5:03,very_rushed_condition,robot_speech,The Hearth & Oak is just across the street. It’s local cuisine in a rustic setting.
+p11,307.46,5:07,very_rushed_condition,interruption,
+p11,307.99,5:08,very_rushed_condition,robot_speech,"Sure, you seem to be in a hurry. What can I help you with?"
+p11,317.90,5:18,very_rushed_condition,interruption,
+p11,318.01,5:18,very_rushed_condition,robot_speech,We keep all forgotten items in the box at the back of the room. Just have a quick word with my colleague over there and they will be happy to help.
+p11,327.88,5:28,very_rushed_condition,robot_speech,Great. It was a pleasure to help you. Have a nice day.
