@@ -28,26 +28,26 @@ def main():
         event = row['event']
 
         video_front_path = os.path.join(DATA_PATH, participant_id, f"{participant_id}_front.mp4")
-        video_furhat_path = os.path.join(DATA_PATH, participant_id, f"{participant_id}_furhat.mp4")
+        video_side_path = os.path.join(DATA_PATH, participant_id, f"{participant_id}_side.mp4")
         image_id = f"{participant_id}_{str(time_sec).replace('.', '_')}"
-        image_front_path = os.path.join(DATA_PATH, "front" ,f"{image_id}.png")
-        image_furhat_path = os.path.join(DATA_PATH, "furhat" ,f"{image_id}.png")
+        image_front_path = os.path.join(DATA_PATH, "final_dataset", "front" ,f"{image_id}.png")
+        image_side_path = os.path.join(DATA_PATH, "final_dataset", "side" ,f"{image_id}.png")
 
         if event == "robot_speech":
             caption = base_caption
             time_sec = time_sec + 0.5
             image_id = f"{participant_id}_{str(time_sec).replace('.', '_')}"
-            image_front_path = os.path.join(DATA_PATH, "front" ,f"{image_id}.png")
-            image_furhat_path = os.path.join(DATA_PATH, "furhat" ,f"{image_id}.png")
+            image_front_path = os.path.join(DATA_PATH, "final_dataset", "front" ,f"{image_id}.png")
+            image_side_path = os.path.join(DATA_PATH, "final_dataset", "side" ,f"{image_id}.png")
             annotated_data.append([image_id, caption])
             extract_image(video_front_path, time_sec, image_front_path)
-            extract_image(video_furhat_path, time_sec, image_furhat_path)
+            extract_image(video_side_path, time_sec, image_side_path)
 
         elif event == "attempted_approach":
             caption = attempt_caption
             annotated_data.append([image_id, caption])
             extract_image(video_front_path, time_sec, image_front_path)
-            extract_image(video_furhat_path, time_sec, image_furhat_path)
+            extract_image(video_side_path, time_sec, image_side_path)
 
         elif event == "approach_move":
             if row['condition'] in ["rushed_condition", "very_rushed_condition"]:
@@ -56,23 +56,23 @@ def main():
                 caption = approach_move_caption
             time_sec = time_sec + 0.10
             image_id = f"{participant_id}_{str(time_sec).replace('.', '_')}"
-            image_front_path = os.path.join(DATA_PATH, "front" ,f"{image_id}.png")
-            image_furhat_path = os.path.join(DATA_PATH, "furhat" ,f"{image_id}.png")
+            image_front_path = os.path.join(DATA_PATH, "final_dataset", "front" ,f"{image_id}.png")
+            image_side_path = os.path.join(DATA_PATH, "final_dataset", "side" ,f"{image_id}.png")
             annotated_data.append([image_id, caption])
             extract_image(video_front_path, time_sec, image_front_path)
-            extract_image(video_furhat_path, time_sec, image_furhat_path)
+            extract_image(video_side_path, time_sec, image_side_path)
 
         elif event == "approach_talk":
             caption = approach_talk_caption
             annotated_data.append([image_id, caption])
             extract_image(video_front_path, time_sec, image_front_path)
-            extract_image(video_furhat_path, time_sec, image_furhat_path)
+            extract_image(video_side_path, time_sec, image_side_path)
 
         elif event == "robot_speech_interruption":
             caption = interruption_caption
             annotated_data.append([image_id, caption])
             extract_image(video_front_path, time_sec, image_front_path)
-            extract_image(video_furhat_path, time_sec, image_furhat_path)
+            extract_image(video_side_path, time_sec, image_side_path)
 
         else:
             continue # Skip other events
