@@ -13,13 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='roncu858',
+    maintainer='ronald',
     maintainer_email='ronald.cumbal.g@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'vosk_stt = pkg_audio_input.vosk_stt:main',
         ],
     },
 )
