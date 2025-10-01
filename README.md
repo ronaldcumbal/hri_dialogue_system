@@ -18,14 +18,30 @@ The **woz_reception** package is design to allow a person to control the robot's
 
 `ros2 run woz_reception wizard_interface`
 
-## Perception Package
+## Audio Input Package
 
-The **robot_perception** package integrates different components to read and process input signals, including vision, audio (speech), buttons/keys and sensors in general.
+The **input_audio** package integrates the components to read and process audio input signals.
+
+## Visual Input Package
+
+The **input_visual** package integrates the components to read and process visual input signals
+
+## Sensor Input Package
+
+The **input_sensor** package integrates the components to read and process input signals from buttons/keys and sensors in general.
 
 ## Reasoning Package
 
-The **robot_reasoning** package integrates different models to preform computations and generate robot actions. These are mostly large models.
+The **robot_reasoning** package integrates different models to preform computations from input signals and generate robot actions. These are mostly large models.
 
-## Reaction Package
+## Embodiment Package
 
-The **robot_react** package integrates different component that make the robot perform different actions.
+The **robot_embodiment** package integrates different component to connect a robot.
+
+## Output Package
+
+The **robot_output** package integrates different component that make the robot perform different actions.
+
+## Interface Package
+
+The **interface** package integrates component outside of the robot embodiment, for example, GIUs, tablets, lights, etc.
