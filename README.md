@@ -10,11 +10,11 @@ The system is desingned to work within the ROS 2 (Humble) framework. The install
 
 The **woz_reception** package is design to allow a person to control the robot's speech and head gestures. Currently this is limited to a predetermined set of utterances. A simple interface indicates which keys should be pressed to send individual utterances to be spoken by the robot. 
 
-### Compile
+#### Compile
 
 `colcon build --packages-select woz_reception`
 
-### Run
+#### Run
 
 `ros2 run woz_reception wizard_interface`
 
