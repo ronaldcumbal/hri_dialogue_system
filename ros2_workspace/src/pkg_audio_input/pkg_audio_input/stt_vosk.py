@@ -1,6 +1,9 @@
 # Based on https://github.com/alphacep/vosk-api/blob/master/python/example/test_microphone.py
-# When run this node alone while debugging:
+#
+# Example CLI commands:
+# ros2 run pkg_audio_input stt_vosk --ros-args -p start_listening:=True
 # ros2 run pkg_audio_input stt_vosk --ros-args -p start_listening:=True --log-level debug
+# ros2 topic echo /speech_final
 
 import queue
 import sys

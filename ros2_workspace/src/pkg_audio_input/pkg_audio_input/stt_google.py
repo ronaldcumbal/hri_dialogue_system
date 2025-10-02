@@ -1,15 +1,13 @@
 # Based on https://cloud.google.com/speech-to-text/docs/transcribe-streaming-audio
-# When run this node alone while debugging:
+#
+# Example CLI commands:
+# ros2 run pkg_audio_input stt_google --ros-args -p start_listening:=True
 # ros2 run pkg_audio_input stt_google --ros-args -p start_listening:=True --log-level debug
+# ros2 topic echo /speech_final
 
-import os
-import re
-import sys
+import queue
 import time
 import pyaudio
-import threading
-# from six.moves import queue
-import queue
 import sounddevice as sd
 from google.cloud import speech
 
