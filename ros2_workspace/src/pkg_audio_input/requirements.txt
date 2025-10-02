@@ -1,2 +1,4 @@
 vosk==0.3.45
 sounddevice==0.5.2
+google-cloud-speech==2.33.0
+PyAudio==0.2.14

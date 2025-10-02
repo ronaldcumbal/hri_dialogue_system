@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'vosk_stt = pkg_audio_input.vosk_stt:main',
+            'stt_vosk = pkg_audio_input.stt_vosk:main',
+            'stt_google = pkg_audio_input.stt_google:main',
         ],
     },
 )
