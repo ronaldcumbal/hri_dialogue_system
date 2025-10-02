@@ -18,6 +18,11 @@ Recommended steps to install sounddevice with portAudio ([source](https://github
 - Install sounddevice Python package:
 `pip install sounddevice`
 
+## Using Google Cloud Services
 
+### Install the gcloud CLI locally
+Follow this [tutorial](https://cloud.google.com/sdk/docs/install#deb)
 
+### Set Aplication Default Credentials
+Follow this [tutorial](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment)
 
