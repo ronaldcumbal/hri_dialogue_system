@@ -15,17 +15,17 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-class SpeechTotext(Node):
+class SpeechTotextNode(Node):
     def __init__(self):
         super().__init__("microphone_stt")
 
         # publishers
         self.state_pub = self.create_publisher(String, "/state", 0)
-        self.speech_final_pub = self.create_publisher(String, "/speech_final", 0)
-        self.speech_partial_pub = self.create_publisher(String, "/speech_partial", 0)
+        self.speech_final_pub = self.create_publisher(String, "/user_speech", 0)
+        self.speech_partial_pub = self.create_publisher(String, "/user_speech_partial", 0)
 
         # subscribers
-        self.state_subscriber = self.create_subscription(String, "/state", self.state_callback, 0)
+        self.state_sub = self.create_subscription(String, "/state", self.state_callback, 0)
 
         self.declare_parameter('device', 0)
         self.declare_parameter('language', 'en-us')
@@ -107,7 +107,7 @@ class SpeechTotext(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = SpeechTotext()
+    node = SpeechTotextNode()
 
     try:
         rclpy.spin(node)
