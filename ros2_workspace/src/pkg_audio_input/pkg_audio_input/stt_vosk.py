@@ -20,9 +20,9 @@ class SpeechTotextNode(Node):
         super().__init__("microphone_stt")
 
         # publishers
-        self.state_pub = self.create_publisher(String, "/state", 0)
-        self.speech_final_pub = self.create_publisher(String, "/user_speech", 0)
-        self.speech_partial_pub = self.create_publisher(String, "/user_speech_partial", 0)
+        self.state_publisher = self.create_publisher(String, "/state", 0)
+        self.speech_final_publisher = self.create_publisher(String, "/user_speech", 0)
+        self.speech_partial_publisher = self.create_publisher(String, "/user_speech_partial", 0)
 
         # subscribers
         self.state_sub = self.create_subscription(String, "/state", self.state_callback, 0)
@@ -89,16 +89,16 @@ class SpeechTotextNode(Node):
                     text = json.loads(rec.Result())["text"]
                     msg = String()
                     msg.data = text
-                    self.speech_final_pub.publish(msg)
-                    self.get_logger().info(f"Topic: {self.speech_final_pub.topic_name} msg: {msg.data}")
+                    self.speech_final_publisher.publish(msg)
+                    self.get_logger().info(f"Topic: {self.speech_final_publisher.topic_name} msg: {msg.data}")
 
                 else:
                     partial = json.loads(rec.PartialResult())["partial"]
                     if partial != "":
                         msg = String()
                         msg.data = partial
-                        self.speech_partial_pub.publish(msg)
-                        self.get_logger().debug(f"Topic: {self.speech_partial_pub.topic_name} msg: {msg.data}")
+                        self.speech_partial_publisher.publish(msg)
+                        self.get_logger().debug(f"Topic: {self.speech_partial_publisher.topic_name} msg: {msg.data}")
 
     # def publish_string(self, string_to_send, publisher_to_use):
     #     msg = String()

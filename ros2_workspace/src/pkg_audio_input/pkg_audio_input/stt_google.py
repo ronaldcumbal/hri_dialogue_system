@@ -30,12 +30,12 @@ class SpeechTotextNode(Node):
         super().__init__("microphone_stt")
 
         # publishers
-        self.state_pub = self.create_publisher(String, "/state", 0)
-        self.speech_final_pub = self.create_publisher(String, "/user_speech", 0)
-        self.speech_partial_pub = self.create_publisher(String, "/user_speech_partial", 0)
+        self.state_publisher = self.create_publisher(String, "/state", 0)
+        self.speech_final_publisher = self.create_publisher(String, "/user_speech", 0)
+        self.speech_partial_publisher = self.create_publisher(String, "/user_speech_partial", 0)
 
         # subscribers
-        self.state_sub = self.create_subscription(String, "/state", self.state_callback, 0)
+        self.state_subscriber = self.create_subscription(String, "/state", self.state_callback, 0)
 
         self.declare_parameter('device', 0)
         self.declare_parameter('language', 'en-US')
@@ -168,13 +168,13 @@ def listen_loop(responses, stream):
         if result.is_final:
             msg = String()
             msg.data = text
-            stream.speech_final_pub.publish(msg)
-            stream.get_logger().info(f"Topic: {stream.speech_final_pub.topic_name} msg: {msg.data}")
+            stream.speech_final_publisher.publish(msg)
+            stream.get_logger().info(f"Topic: {stream.speech_final_publisher.topic_name} msg: {msg.data}")
         else:
             msg = String()
             msg.data = text
-            stream.speech_partial_pub.publish(msg)
-            stream.get_logger().debug(f"Topic: {stream.speech_partial_pub.topic_name} msg: {msg.data}")
+            stream.speech_partial_publisher.publish(msg)
+            stream.get_logger().debug(f"Topic: {stream.speech_partial_publisher.topic_name} msg: {msg.data}")
 
 def main(args=None):
     rclpy.init(args=args)
