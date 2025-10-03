@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'pkg_commons'],
     zip_safe=True,
     maintainer='ronald',
     maintainer_email='ronald.cumbal.g@gmail.com',
@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'client_test = pkg_reasoning.client_test:main',
+            'llm_openai = pkg_reasoning.llm_openai:main'
         ],
     },
 )
