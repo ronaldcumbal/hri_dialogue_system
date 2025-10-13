@@ -2,7 +2,6 @@
 
 import openai
 import anthropic
-from google import genai
 
 import rclpy
 from rclpy.node import Node
@@ -34,8 +33,6 @@ class LLMNode(Node):
             return self.chatgpt_response(user_input)
         elif model == "claude":
             return self.claude_response(user_input)
-        elif model == "gemini":
-            return self.gemini_response(user_input)
         elif model == "test":
             return "Response from test model"
         else:
@@ -57,19 +54,6 @@ class LLMNode(Node):
             max_tokens=200,
         )
         output = response.choices[0].message.content
-        return output
-
-    def prompt_gemini(self, user_input:str):
-        client = genai.Client()
-        content = self.process_user_input(user_input)
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=content,
-            # config=types.GenerateContentConfig(
-            #     thinking_config=types.ThinkingConfig(thinking_budget=0) # Disables thinking
-            # ),
-        )
-        output = response.text
         return output
 
     def prompt_claude(self, user_input:str):
