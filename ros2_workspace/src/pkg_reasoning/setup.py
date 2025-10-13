@@ -13,15 +13,15 @@ setup(
     ],
     install_requires=['setuptools', 'pkg_commons'],
     zip_safe=True,
-    maintainer='ronald',
+    maintainer='Ronald Cumbal',
     maintainer_email='ronald.cumbal.g@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'client_test = pkg_reasoning.client_test:main',
-            'llm_openai = pkg_reasoning.llm_openai:main'
+            'dialogue_client = pkg_reasoning.dialogue_client:main',
+            'llm_service = pkg_reasoning.llm_service:main'
         ],
     },
 )
