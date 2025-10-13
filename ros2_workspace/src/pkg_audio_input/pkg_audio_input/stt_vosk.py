@@ -36,7 +36,7 @@ class SpeechTotextNode(Node):
         self.declare_parameter('language', 'en-us')
         self.declare_parameter('sample_rate', 44100)
         self.declare_parameter('channels', 1)
-        self.declare_parameter('start_listening', True)
+        self.declare_parameter('start_listening', False)
 
         self._device = self.get_parameter('device').value
         self._language = self.get_parameter('language').value
