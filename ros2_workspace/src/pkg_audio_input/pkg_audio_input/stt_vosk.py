@@ -5,6 +5,7 @@
 # ros2 run pkg_audio_input stt_vosk --ros-args -p start_listening:=True --log-level debug
 # ros2 topic echo /speech_final
 
+import os
 import queue
 import sys
 import json
@@ -27,11 +28,15 @@ class SpeechTotextNode(Node):
         # subscribers
         self.state_sub = self.create_subscription(String, "/state", self.state_callback, 0)
 
+        # MODELS_PATH = os.getenv('DATA_PATH', '/home/roncu858/Github/hri_dialogue_system/ros2_workspace/src/pkg_audio_input/models')
+        MODELS_PATH = '/home/roncu858/Github/hri_dialogue_system/ros2_workspace/src/pkg_audio_input/models'
+        self.model_path =  os.path.join(MODELS_PATH, "vosk-model-en-us-0.22")
+
         self.declare_parameter('device', 0)
         self.declare_parameter('language', 'en-us')
         self.declare_parameter('sample_rate', 44100)
         self.declare_parameter('channels', 1)
-        self.declare_parameter('start_listening', False)
+        self.declare_parameter('start_listening', True)
 
         self._device = self.get_parameter('device').value
         self._language = self.get_parameter('language').value
@@ -51,7 +56,7 @@ class SpeechTotextNode(Node):
         device_info = sd.query_devices(self._device, "input")
         # samplerate = int(device_info["default_samplerate"])
 
-        self.model = Model(lang=self._language)
+        # self.model = Model(lang=self._language)
         self.q = queue.Queue()
 
         self.get_logger().info(f"Device initialized")

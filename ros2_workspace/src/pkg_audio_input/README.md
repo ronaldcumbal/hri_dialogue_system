@@ -1,3 +1,9 @@
+## Installing Vosk
+
+Download models from ([here](https://alphacephei.com/vosk/models)):
+
+Place unzipped model in `../ros2_workspace/src/pkg_audio_input/models'`
+
 ## Installing sounddevice
 
 Recommended steps to install sounddevice with portAudio ([source](https://github.com/Upsonic/Upsonic/issues/22)):
