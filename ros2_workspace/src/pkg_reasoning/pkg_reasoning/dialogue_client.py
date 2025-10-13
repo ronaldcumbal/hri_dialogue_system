@@ -20,10 +20,12 @@ class MinimalClientAsync(Node):
         self.request = DialogueTurn.Request()
 
     def user_speech_callback(self, msg):
+        print("---------------------------", msg)
+
         response = self.send_request(msg.data)
         self.get_logger().info(f'Response: {response.output_text}')
 
-    def user_speech_partial_callback(self):
+    def user_speech_partial_callback(self, msg):
         # Get quick responses if partial results match with FAQ or known commands
         pass
 
@@ -39,13 +41,15 @@ class MinimalClientAsync(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    node = MinimalClientAsync()
 
-    minimal_client = MinimalClientAsync()
-    response = minimal_client.send_request("This is a text.")
-    print(response.output_text)
-
-    minimal_client.destroy_node()
-    rclpy.shutdown()
+    try:
+        rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
