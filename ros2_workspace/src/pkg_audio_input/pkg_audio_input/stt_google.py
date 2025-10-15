@@ -136,6 +136,7 @@ class SpeechTotextNode(Node):
         self.get_logger().info(f"Device listening")
         self._audio_stream.start_stream()
         self.stream_running = True
+        self.recognition_start = time.time()
 
     def get_rate(self):
         return self._samplerate
@@ -162,19 +163,23 @@ def listen_loop(responses, stream):
 
         text = result.alternatives[0].transcript
         duration_sec = result.result_end_time.seconds
-        # confidence = result.alternatives[0].confidence
+        confidence = result.alternatives[0].confidence
         # duration_nano = result.result_end_time.nano
 
         if result.is_final:
-            msg = String()
-            msg.data = text
-            stream.speech_final_publisher.publish(msg)
-            stream.get_logger().info(f"Topic: {stream.speech_final_publisher.topic_name} msg: {msg.data}")
+            result_length = time.time() - (stream.recognition_start+duration_sec)
+            if confidence > 0.4 and result_length > 0.75: # TODO: adjust confidence threshold
+                msg = String()
+                msg.data = text
+                stream.speech_final_publisher.publish(msg)
+                stream.get_logger().info(f"Topic: {stream.speech_final_publisher.topic_name} confidence: {confidence:.2f} msg: {text}")
+            else:
+                stream.get_logger().warn(f"Topic: {stream.speech_final_publisher.topic_name} Rejected (conf: {confidence:.2f} len: {result_length:.2f} s) msg: {text}")
         else:
             msg = String()
             msg.data = text
             stream.speech_partial_publisher.publish(msg)
-            stream.get_logger().debug(f"Topic: {stream.speech_partial_publisher.topic_name} msg: {msg.data}")
+            stream.get_logger().debug(f"Topic: {stream.speech_partial_publisher.topic_name} msg: {text}")
 
 def main(args=None):
     rclpy.init(args=args)
