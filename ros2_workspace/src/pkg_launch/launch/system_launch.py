@@ -6,21 +6,25 @@ def generate_launch_description():
 
     ld = LaunchDescription()
 
-    dialogue_client = Node(
+    dialogue_manager = Node(
             package='pkg_reasoning',
             namespace='pkg_reasoning',
-            executable='dialogue_client',
-            name='dialogue_client',
+            executable='dialogue_manager',
+            name='dialogue_manager',
     )
-    ld.add_action(dialogue_client)
+    ld.add_action(dialogue_manager)
 
-    llm_service = Node(
+    llm_prompter = Node(
             package='pkg_reasoning',
             namespace='pkg_reasoning',
-            executable='llm_service',
-            name='llm_service',
+            executable='llm_prompter',
+            name='llm_prompter',
+            parameters=[
+                {'llm_model': 'test'},
+            ]
+
     )
-    ld.add_action(llm_service)
+    ld.add_action(llm_prompter)
 
     speech_to_text_google = Node(
             package='pkg_audio_input',
