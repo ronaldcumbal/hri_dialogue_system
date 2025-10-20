@@ -22,7 +22,7 @@ class LLMNode(Node):
 
     def dialogue_callback(self, request, response):
         response.output_text = self.get_LLM_response(request.input_text)
-        self.get_logger().info(f'Incoming request: {request.input_text}')
+        self.get_logger().info(f'Request: {request.input_text}')
         return response
 
     def state_callback(self):

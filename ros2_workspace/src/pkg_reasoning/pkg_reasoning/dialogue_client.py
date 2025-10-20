@@ -16,23 +16,25 @@ class MinimalClientAsync(Node):
 
         self.client = self.create_client(DialogueTurn, 'dialogue_service')
         while not self.client.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('service not available, waiting again...')
+            self.get_logger().warn('########## Dialogue service not available, waiting again... ##########')
         self.request = DialogueTurn.Request()
+        self.get_logger().info(f"Dialogue Service initialized")
 
     def user_speech_callback(self, msg):
-        print("---------------------------", msg)
-
-        response = self.send_request(msg.data)
-        self.get_logger().info(f'Response: {response.output_text}')
+        if "request" in msg.data.lower():
+            response = self.send_request(msg.data)
+            self.get_logger().info(f'Response: {response.output_text}')
 
     def user_speech_partial_callback(self, msg):
         # Get quick responses if partial results match with FAQ or known commands
         pass
 
     def send_request(self, text):
+        self.get_logger().info(f'SEND_REQUEST')
         self.request.input_text = text
         self.future = self.client.call_async(self.request)
         rclpy.spin_until_future_complete(self, self.future)
+        self.get_logger().info(f'AFTER -- SEND_REQUEST')
         return self.future.result()
 
     def state_callback(self):
