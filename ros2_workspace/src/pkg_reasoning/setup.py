@@ -20,8 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'dialogue_client = pkg_reasoning.dialogue_client:main',
-            'llm_service = pkg_reasoning.llm_service:main'
+            'dialogue_manager = pkg_reasoning.dialogue_manager:main',
+            'llm_prompter = pkg_reasoning.llm_prompter:main'
         ],
     },
 )
