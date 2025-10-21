@@ -1,5 +1,0 @@
-microphone:
-  ros__parameters:
-    device: 0
-    language: "en-us"
-    sample_rate: 44100
