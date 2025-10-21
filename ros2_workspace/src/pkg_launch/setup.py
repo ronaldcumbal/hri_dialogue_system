@@ -14,7 +14,7 @@ setup(
     ],
     install_requires=['setuptools', 'pkg_commons', 'pkg_reasoning', 'pkg_audio_input'],
     zip_safe=True,
-    maintainer='roncu858',
+    maintainer='ronald',
     maintainer_email='ronald.cumbal.g@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',

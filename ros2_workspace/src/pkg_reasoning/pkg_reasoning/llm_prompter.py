@@ -24,6 +24,10 @@ class LLMNode(Node):
 
         self.declare_parameter('llm_model', 'test')
         self.model = self.get_parameter('llm_model').value
+        if self.model not in {'openai', 'anthropic', 'test'}:
+            self.get_logger().warning(f"Invalid model name: {self.model.upper()}")
+        else:
+            self.get_logger().info(f"Working with {self.model.upper()} model")
 
         # System and Robot state Initialzation
         self.robot_state = "idle"
@@ -39,9 +43,9 @@ class LLMNode(Node):
 
     def process_LLM_response(self, user_input:str):
         response = ""
-        if self.model == "chatgpt":
+        if self.model == "openai":
             response = self.prompt_chatgpt(user_input)
-        elif self.model == "claude":
+        elif self.model == "anthropic":
             response = self.prompt_claude(user_input)
         elif self.model == "test":
             response = f"Response from test model {time.time()}"
@@ -63,7 +67,7 @@ class LLMNode(Node):
         client = openai.OpenAI()
         content = self.process_user_input(user_input)
         response = client.chat.completions.create(
-            model="gpt-5", # gpt-4o , o3
+            model="gpt-4o", 
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": content}

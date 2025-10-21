@@ -20,7 +20,7 @@ def generate_launch_description():
             executable='llm_prompter',
             name='llm_prompter',
             parameters=[
-                {'llm_model': 'test'},
+                {'llm_model': 'openai'},
             ]
 
     )
