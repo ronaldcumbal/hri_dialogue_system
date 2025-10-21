@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/pkg_launch/launch', ['launch/system_launch.py']),
+        ('share/pkg_launch/config', ['config/params_1.yaml']),
     ],
     install_requires=['setuptools', 'pkg_commons', 'pkg_reasoning', 'pkg_audio_input'],
     zip_safe=True,

@@ -1,6 +1,15 @@
-
+import os
+import sys
+from pathlib import Path
 from launch import LaunchDescription
 from launch_ros.actions import Node
+
+# From: https://github.com/ros-drivers/usb_cam/blob/main/launch/camera.launch.py
+# Hack to get relative import of .camera_config file working
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path)
+
+from pkg_launch.camera_config import CameraConfig
 
 def generate_launch_description():
 
@@ -22,7 +31,6 @@ def generate_launch_description():
             parameters=[
                 {'llm_model': 'openai'},
             ]
-
     )
     ld.add_action(llm_prompter)
 
@@ -40,6 +48,18 @@ def generate_launch_description():
             ]
     )
     ld.add_action(speech_to_text_google)
+
+    camera = CameraConfig(name='laptop_camera', filename='params_1.yaml')
+    usb_camera = Node(
+            package='usb_cam',
+            namespace=camera.namespace,
+            executable='usb_cam_node_exe',
+            name=camera.name,
+            output='screen',
+            parameters=[camera.param_path],
+            remappings=camera.remappings
+    )
+    ld.add_action(usb_camera)
 
     # furnat_bridge_node = Node(
     #         package='woz_reception',
