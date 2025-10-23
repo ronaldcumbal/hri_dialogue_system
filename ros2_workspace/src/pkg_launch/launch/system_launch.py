@@ -5,9 +5,6 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 
 # From: https://github.com/ros-drivers/usb_cam/blob/main/launch/camera.launch.py
-# Hack to get relative import of .camera_config file working
-dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(dir_path)
 
 from pkg_launch.camera_config import CameraConfig
 

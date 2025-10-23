@@ -10,7 +10,7 @@ from queue import Queue, Full
 class DialogueManagerNode(Node):
 
     def __init__(self):
-        super().__init__('minimal_client_async')
+        super().__init__('dialogue_manager')
         # subscribers
         self.create_subscription(String, "/state", self.state_callback, 0)
         self.create_subscription(String, "/user_speech", self.user_speech_callback, 0)
