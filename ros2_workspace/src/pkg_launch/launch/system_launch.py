@@ -46,7 +46,7 @@ def generate_launch_description():
     )
     ld.add_action(speech_to_text_google)
 
-    camera = CameraConfig(name='laptop_camera', filename='params_1.yaml')
+    camera = CameraConfig(name='laptop_camera', filename='params_logitech.yaml')
     usb_camera = Node(
             package='usb_cam',
             namespace=camera.namespace,
