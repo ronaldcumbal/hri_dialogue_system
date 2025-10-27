@@ -28,15 +28,15 @@ class CameraConfig(BaseModel):
             raise FileNotFoundError(f'Could not find parameter file: {value}')
         return value
 
-    @model_validator(mode='after')
-    def validate_model(self) -> 'CameraConfig':
-        if self.name and not self.remappings:
-            # Automatically set remappings if name is set
-            self.remappings = [
-                ('image_raw', f'{self.name}/image_raw'),
-                ('image_raw/compressed', f'{self.name}/image_compressed'),
-                ('image_raw/compressedDepth', f'{self.name}/compressedDepth'),
-                ('image_raw/theora', f'{self.name}/image_raw/theora'),
-                ('camera_info', f'{self.name}/camera_info'),
-            ]
-        return self
+    # @model_validator(mode='after')
+    # def validate_model(self) -> 'CameraConfig':
+    #     if self.name and not self.remappings:
+    #         # Automatically set remappings if name is set
+    #         self.remappings = [
+    #             ('image_raw', f'{self.name}/image_raw'),
+    #             ('image_raw/compressed', f'{self.name}/image_compressed'),
+    #             ('image_raw/compressedDepth', f'{self.name}/compressedDepth'),
+    #             ('image_raw/theora', f'{self.name}/image_raw/theora'),
+    #             ('camera_info', f'{self.name}/camera_info'),
+    #         ]
+    #     return self
