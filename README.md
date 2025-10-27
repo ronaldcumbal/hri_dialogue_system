@@ -6,6 +6,16 @@ This repo contains basic interactive components to use in human-robot interactio
 
 The system is desingned to work within the ROS 2 (Humble) framework. The installation tutorial can be found in this [link](https://docs.ros.org/en/humble/Installation.html).
 
+
+### hri_msg and hri_face_detection
+
+In addition to the packages in requirements.txt, you might need the following:
+
+`pip install transforms3d`
+
+`pip install scipy`
+
+
 ### Wizard-of-Oz Package
 
 The **woz_reception** package is design to allow a person to control the robot's speech and head gestures. Currently this is limited to a predetermined set of utterances. A simple interface indicates which keys should be pressed to send individual utterances to be spoken by the robot. 
