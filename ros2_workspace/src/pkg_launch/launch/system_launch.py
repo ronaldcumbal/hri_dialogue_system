@@ -12,7 +12,6 @@ from lifecycle_msgs.msg import Transition
 
 from pkg_launch.camera_config import CameraConfig
 from ament_index_python.packages import get_package_share_directory
-CAM_CONFIG_DIR = get_package_share_directory('pkg_launch')
 
 def generate_launch_description():
 
@@ -52,7 +51,7 @@ def generate_launch_description():
 #     )
 #     ld.add_action(speech_to_text_google)
 
-    config_file = os.path.join(CAM_CONFIG_DIR, 'config', 'params_logitech.yaml')
+    config_file = os.path.join(get_package_share_directory('pkg_launch'), 'config', 'params_default.yaml')
     usb_camera = Node(
             package='usb_cam',
             namespace='',
@@ -82,7 +81,7 @@ def generate_launch_description():
                 {'face_mesh': False},
                 # {'filtering_frame': 'camera_color_optical_frame' },
                 {'deterministic_ids': True},
-                {'debug': False}
+                {'debug': True}
             ],
         # remappings=config["remappings"],
         # arguments=config["arguments"],
