@@ -39,9 +39,3 @@ Follow this [tutorial](https://cloud.google.com/sdk/docs/install#deb)
 
 ### Set Aplication Default Credentials
 Follow this [tutorial](https://cloud.google.com/docs/authentication/set-up-adc-local-dev-environment)
-
-## Getting USB camera feed
-
-Follow the installation tutorial [here](https://github.com/ros-drivers/usb_cam)
-
-`sudo apt-get install ros-humble-usb-cam`

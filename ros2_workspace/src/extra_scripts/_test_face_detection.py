@@ -76,7 +76,7 @@ if __name__ == '__main__':
                   targetId=target_id)
 
 
-    # Use CLI to list all video devices: 4l2-ctl --list-devices 
+    # Use CLI to list all video devices: v4l2-ctl --list-devices 
     deviceId = 0
     cap = cv.VideoCapture(deviceId)
     w = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))

@@ -22,7 +22,6 @@ setup(
         'console_scripts': [
             'stt_vosk = pkg_audio_input.stt_vosk:main',
             'stt_google = pkg_audio_input.stt_google:main',
-            'face_detection = pkg_audio_input.face_detection:main',
         ],
     },
 )

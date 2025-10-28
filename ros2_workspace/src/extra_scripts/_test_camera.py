@@ -27,5 +27,5 @@ def list_cameras():
         cap.release()
 
 if __name__ == "__main__":
-    test_camera()
-    # list_cameras()
+    # test_camera()
+    list_cameras()

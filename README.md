@@ -7,6 +7,12 @@ This repo contains basic interactive components to use in human-robot interactio
 The system is desingned to work within the ROS 2 (Humble) framework. The installation tutorial can be found in this [link](https://docs.ros.org/en/humble/Installation.html).
 
 
+### Getting USB camera feed
+
+Follow the installation tutorial [here](https://github.com/ros-drivers/usb_cam)
+
+`sudo apt-get install ros-humble-usb-cam`
+
 ### hri_msg and hri_face_detection
 
 In addition to the packages in requirements.txt, you might need the following:
