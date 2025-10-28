@@ -15,6 +15,8 @@ In addition to the packages in requirements.txt, you might need the following:
 
 `pip install scipy`
 
+`sudo apt-get install ros-humble-tf-transformations`
+
 
 ### Wizard-of-Oz Package
 
