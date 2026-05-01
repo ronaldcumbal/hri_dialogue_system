@@ -63,3 +63,11 @@ The **pkg_output** package integrates different component that make the robot pe
 ### Interface Package
 
 The **pkg_interfaces** package integrates component outside of the robot embodiment, for example, GIUs, tablets, lights, etc.
+
+## Additional modules
+
+The following are packages that can be used as already built funtionalities:
+
+- hri_face_detect
+- hri_msgs
+- usb_cam
