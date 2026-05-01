@@ -51,7 +51,7 @@ def generate_launch_description():
 #     )
 #     ld.add_action(speech_to_text_google)
 
-    config_file = os.path.join(get_package_share_directory('pkg_launch'), 'config', 'params_default.yaml')
+    config_file = os.path.join(get_package_share_directory('pkg_launch'), 'config', 'params_logitech.yaml')
     usb_camera = Node(
             package='usb_cam',
             namespace='',
