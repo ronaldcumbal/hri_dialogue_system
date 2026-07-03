@@ -1,11 +1,9 @@
 import rclpy
 from rclpy.node import Node
 
-from pkg_commons.srv import DialogueTurn
 from std_msgs.msg import String
 
-import threading
-from queue import Queue, Full
+from queue import Queue
 
 class DialogueManagerNode(Node):
 
@@ -23,14 +21,11 @@ class DialogueManagerNode(Node):
         self.llm_request_pub = self.create_publisher(String, "/llm_request", 0)
 
         self.user_utterance_buffer = Queue(maxsize=10)
+        self.awaiting_llm_response = False
 
         # System and Robot state Initialzation
         self.robot_state = "idle"
         self.state = "init"
-
-        self.timer_running = False
-        self.lock = threading.Lock()
-        self.timer = None
 
         self.get_logger().info(f"Dialogue Manager initialized")
 
@@ -41,15 +36,13 @@ class DialogueManagerNode(Node):
     def user_speech_callback(self, msg):
         '''Callback for TTS final results'''
         self.user_utterance_buffer.put(msg.data)
-
-        with self.lock:
-            if not self.timer_running:
-                self.process_llm_request()
+        self.process_llm_request()
 
     def llm_response_callback(self, msg:str):
         '''Callback for LLM response'''
+        self.awaiting_llm_response = False
         self.process_robot_action(msg.data)
-        print(f"LLM ----------: {msg.data}")
+        self.process_llm_request()
 
     def robot_state_callback(self, msg:str):
         '''Callback for robot state updates'''
@@ -61,16 +54,15 @@ class DialogueManagerNode(Node):
 
     def process_robot_action(self, action:str):
         '''Process LLM response and decide robot action'''
-        if self.robot_state == "idle":
-            action = action
-        else:
-            action = action
         self.send_robot_action(action)
 
     def process_llm_request(self):
-        if not self.user_utterance_buffer.empty():
-            text = self.user_utterance_buffer.get()
-            self.send_llm_request(text)
+        '''Send the next buffered utterance to the LLM, one request at a time.'''
+        if self.awaiting_llm_response or self.user_utterance_buffer.empty():
+            return
+        text = self.user_utterance_buffer.get()
+        self.awaiting_llm_response = True
+        self.send_llm_request(text)
 
     def send_llm_request(self, text:str):
         self.llm_request_pub.publish(String(data=text))

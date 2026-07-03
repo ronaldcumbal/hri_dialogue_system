@@ -1,18 +1,13 @@
-# Based on https://github.com/Auromix/ROS-LLM/blob/ros2-humble/llm_model/llm_model/chatgpt.py
-
-import openai
-import anthropic
-import time
-
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
-from pkg_commons.srv import DialogueTurn
+
+from pkg_reasoning.llm_clients import create_llm_client
 
 
 class LLMNode(Node):
     def __init__(self):
-        super().__init__("chatgpt")
+        super().__init__("llm_prompter")
 
         # subscribers
         self.create_subscription(String, "/state", self.state_callback, 0)
@@ -23,73 +18,33 @@ class LLMNode(Node):
         self.llm_response_pub = self.create_publisher(String, "/llm_response", 0)
 
         self.declare_parameter('llm_model', 'test')
-        self.model = self.get_parameter('llm_model').value
-        if self.model not in {'openai', 'anthropic', 'test'}:
-            self.get_logger().warning(f"Invalid model name: {self.model.upper()}")
-        else:
-            self.get_logger().info(f"Working with {self.model.upper()} model")
+        model_name = self.get_parameter('llm_model').value
+        self.client = create_llm_client(model_name)
+        self.get_logger().info(f"Working with {model_name.upper()} model")
 
         # System and Robot state Initialzation
         self.robot_state = "idle"
         self.state = "init"
 
-    def llm_request_callback(self, msg:str):
+    def llm_request_callback(self, msg: String):
         '''Callback for LLM request'''
-        self.process_LLM_response(msg.data)
+        response = self.client.generate(self.process_user_input(msg.data))
+        self.send_llm_response(response)
 
-    def state_callback(self):
+    def state_callback(self, msg: String):
         '''Callback for system state updates'''
-        pass
+        self.state = msg.data
 
-    def process_LLM_response(self, user_input:str):
-        response = ""
-        if self.model == "openai":
-            response = self.prompt_chatgpt(user_input)
-        elif self.model == "anthropic":
-            response = self.prompt_claude(user_input)
-        elif self.model == "test":
-            response = f"Response from test model {time.time()}"
-        else:
-            raise ValueError(f"Unsupported model: {self.model}")
-        self.send_LLM_response(response)
-
-    def send_LLM_response(self, response:str):
+    def send_llm_response(self, response: str):
         self.llm_response_pub.publish(String(data=response))
         self.get_logger().info(f"Topic: {self.llm_response_pub.topic_name} text: {response}")
 
-    def process_user_input(self, user_input:str) -> str:
+    def process_user_input(self, user_input: str) -> str:
         '''Process user input before sending to LLM
-            Possible actions: say_ ,attend_ , gesture_  
+            Possible actions: say_ ,attend_ , gesture_
         '''
         return user_input
 
-    def prompt_chatgpt(self, user_input:str) -> str:
-        client = openai.OpenAI()
-        content = self.process_user_input(user_input)
-        response = client.chat.completions.create(
-            model="gpt-4o", 
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": content}
-            ],
-            max_tokens=200,
-        )
-        output = response.choices[0].message.content
-        return output
-
-    def prompt_claude(self, user_input:str):
-        client = anthropic.Anthropic()
-        content = self.process_user_input(user_input)
-        response = client.messages.create(
-            model="claude-sonnet-4-5",
-            max_tokens=100, # 1000 words requires around 2000 tokens
-            messages=[
-                {"role": "user", "content": content}
-            ]
-        )
-
-        output = response.content[0].text
-        return output
 
 def main(args=None):
     rclpy.init(args=args)
@@ -101,6 +56,7 @@ def main(args=None):
     finally:
         node.destroy_node()
         rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

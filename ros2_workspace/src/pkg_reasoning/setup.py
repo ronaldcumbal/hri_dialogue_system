@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
-    install_requires=['setuptools', 'pkg_commons'],
+    install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Ronald Cumbal',
     maintainer_email='ronald.cumbal.g@gmail.com',

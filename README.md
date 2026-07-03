@@ -24,18 +24,6 @@ In addition to the packages in requirements.txt, you might need the following:
 `sudo apt-get install ros-humble-tf-transformations`
 
 
-### Wizard-of-Oz Package
-
-The **woz_reception** package is design to allow a person to control the robot's speech and head gestures. Currently this is limited to a predetermined set of utterances. A simple interface indicates which keys should be pressed to send individual utterances to be spoken by the robot. 
-
-#### Compile
-
-`colcon build --packages-select woz_reception`
-
-#### Run
-
-`ros2 run woz_reception wizard_interface`
-
 ### Audio Input Package
 
 The **pkg_audio_input** package integrates the components to read and process audio input signals.

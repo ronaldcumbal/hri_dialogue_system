@@ -42,12 +42,16 @@ class SpeechTotextNode(Node):
         self.declare_parameter('sample_rate', 44100)
         self.declare_parameter('channels', 1)
         self.declare_parameter('start_listening', True)
+        self.declare_parameter('confidence_threshold', 0.4)
+        self.declare_parameter('min_result_length', 0.75)
 
         self._device = self.get_parameter('device').value
         self._language = self.get_parameter('language').value
         self._samplerate = self.get_parameter('sample_rate').value
         self._channels = self.get_parameter('channels').value
         self._start_listening = self.get_parameter('start_listening').value
+        self._confidence_threshold = self.get_parameter('confidence_threshold').value
+        self._min_result_length = self.get_parameter('min_result_length').value
 
         self.device_initialization()
 
@@ -168,7 +172,7 @@ def listen_loop(responses, stream):
 
         if result.is_final:
             result_length = time.time() - (stream.recognition_start+duration_sec)
-            if confidence > 0.4 and result_length > 0.75: # TODO: adjust confidence threshold
+            if confidence > stream._confidence_threshold and result_length > stream._min_result_length:
                 msg = String()
                 msg.data = text
                 stream.speech_final_publisher.publish(msg)

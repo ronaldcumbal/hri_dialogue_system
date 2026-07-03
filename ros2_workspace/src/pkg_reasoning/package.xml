@@ -9,7 +9,6 @@
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
-  <depend>pkg_commons</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
