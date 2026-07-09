@@ -4,6 +4,7 @@ from launch.actions import DeclareLaunchArgument, EmitEvent, RegisterEventHandle
 from launch.conditions import IfCondition
 from launch.events import matches_action
 from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.events.lifecycle import ChangeState
 from launch_ros.event_handlers import OnStateTransition
 from lifecycle_msgs.msg import Transition
@@ -13,24 +14,35 @@ from pkg_launch.camera_config import CameraConfig
 
 def generate_launch_description():
 
-    use_audio = LaunchConfiguration('use_audio')
     use_reasoning = LaunchConfiguration('use_reasoning')
-    stt_backend = LaunchConfiguration('stt_backend')
     llm_model = LaunchConfiguration('llm_model')
+    use_audio = LaunchConfiguration('use_audio')
+    stt_backend = LaunchConfiguration('stt_backend')
+    whisper_model = LaunchConfiguration('whisper_model')
+    microphone_device = LaunchConfiguration('microphone_device')
 
     ld = LaunchDescription([
-        DeclareLaunchArgument(
-            'use_audio', default_value='false',
-            description='Start the speech-to-text node (stt_backend selects which one)'),
         DeclareLaunchArgument(
             'use_reasoning', default_value='false',
             description='Start the dialogue_manager and llm_prompter nodes'),
         DeclareLaunchArgument(
-            'stt_backend', default_value='google',
-            description="Speech-to-text backend to use when use_audio:=true: 'google' or 'vosk'"),
-        DeclareLaunchArgument(
             'llm_model', default_value='test',
             description="LLM backend for llm_prompter: 'test', 'openai', 'anthropic' or 'google'"),
+        DeclareLaunchArgument(
+            'use_audio', default_value='false',
+            description='Start the speech-to-text nodes selected by stt_backend'),
+        DeclareLaunchArgument(
+            'stt_backend', default_value='whisper',
+            description="Speech-to-text backend to use when use_audio:=true: "
+                        "'whisper' or 'speechmatics'"),
+        DeclareLaunchArgument(
+            'whisper_model', default_value='small',
+            description="WhisperLive model for stt_whisper_client, e.g. 'tiny', 'base', "
+                        "'small', 'medium', 'large-v3'"),
+        DeclareLaunchArgument(
+            'microphone_device', default_value='-1',
+            description='PyAudio input device index, used by whichever stt_backend '
+                        'is selected; -1 = default input device'),
     ])
 
     camera_config = CameraConfig(filename='params_logitech.yaml', name='laptop_camera')
@@ -102,38 +114,45 @@ def generate_launch_description():
     )
     ld.add_action(llm_prompter)
 
-    speech_to_text_google = Node(
-            package='pkg_audio_input',
-            namespace='pkg_audio_input',
-            executable='stt_google',
-            name='stt_google',
-            parameters=[
-                {'device': 0},
-                {'language': 'en-us'},
-                {'sample_rate': 44100},
-                {'channels': 1},
-                {'start_listening': True}
-            ],
-            condition=IfCondition(PythonExpression(
-                ["'", use_audio, "' == 'true' and '", stt_backend, "' == 'google'"])),
-    )
-    ld.add_action(speech_to_text_google)
+    def stt_backend_condition(name):
+        return IfCondition(PythonExpression(
+            ["'", use_audio, "' == 'true' and '", stt_backend, f"' == '{name}'"]))
 
-    speech_to_text_vosk = Node(
+    stt_whisper_server = Node(
             package='pkg_audio_input',
             namespace='pkg_audio_input',
-            executable='stt_vosk',
-            name='stt_vosk',
-            parameters=[
-                {'device': 0},
-                {'language': 'en-us'},
-                {'sample_rate': 44100},
-                {'channels': 1},
-                {'start_listening': True}
-            ],
-            condition=IfCondition(PythonExpression(
-                ["'", use_audio, "' == 'true' and '", stt_backend, "' == 'vosk'"])),
+            executable='stt_whisper_server',
+            name='stt_whisper_server',
+            output='screen',
+            condition=stt_backend_condition('whisper'),
     )
-    ld.add_action(speech_to_text_vosk)
+    ld.add_action(stt_whisper_server)
+
+    stt_whisper_client = Node(
+            package='pkg_audio_input',
+            namespace='pkg_audio_input',
+            executable='stt_whisper_client',
+            name='stt_whisper_client',
+            output='screen',
+            parameters=[{
+                'model': whisper_model,
+                'device': ParameterValue(microphone_device, value_type=int),
+            }],
+            condition=stt_backend_condition('whisper'),
+    )
+    ld.add_action(stt_whisper_client)
+
+    stt_speechmatics = Node(
+            package='pkg_audio_input',
+            namespace='pkg_audio_input',
+            executable='stt_speechmatics',
+            name='stt_speechmatics',
+            output='screen',
+            parameters=[{
+                'device': ParameterValue(microphone_device, value_type=int),
+            }],
+            condition=stt_backend_condition('speechmatics'),
+    )
+    ld.add_action(stt_speechmatics)
 
     return ld

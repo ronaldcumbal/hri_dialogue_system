@@ -20,8 +20,9 @@ setup(
 #    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'stt_vosk = pkg_audio_input.stt_vosk:main',
-            'stt_google = pkg_audio_input.stt_google:main',
+            'stt_whisper_server = pkg_audio_input.stt_whisper_server:main',
+            'stt_whisper_client = pkg_audio_input.stt_whisper_client:main',
+            'stt_speechmatics = pkg_audio_input.stt_speechmatics:main',
         ],
     },
 )
