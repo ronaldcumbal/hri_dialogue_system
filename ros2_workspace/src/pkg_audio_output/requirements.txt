@@ -1,0 +1,3 @@
+speechmatics-tts==0.1.2
+sounddevice
+numpy
