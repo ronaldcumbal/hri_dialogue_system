@@ -1,0 +1,13 @@
+name: ros_env
+channels:
+  - conda-forge
+  - robostack-humble
+dependencies:
+  - pyaudio
+  - python-sounddevice
+  - ros-dev-tools
+  - ros-humble-desktop
+  - pip:
+    - setuptools==68.1.2
+
+prefix: "/home/ronald/micromamba/envs/ros_env"
